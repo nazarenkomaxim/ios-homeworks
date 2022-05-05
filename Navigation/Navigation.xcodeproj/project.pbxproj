@@ -9,20 +9,19 @@
 /* Begin PBXBuildFile section */
 		EEA46503282456570023DE0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA46502282456570023DE0A /* AppDelegate.swift */; };
 		EEA46505282456570023DE0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA46504282456570023DE0A /* SceneDelegate.swift */; };
-		EEA46507282456570023DE0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA46506282456570023DE0A /* ViewController.swift */; };
 		EEA4650C282456590023DE0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEA4650B282456590023DE0A /* Assets.xcassets */; };
 		EEA4650F282456590023DE0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEA4650D282456590023DE0A /* LaunchScreen.storyboard */; };
 		EEA4651728245D1A0023DE0A /* NavigationTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4651628245D1A0023DE0A /* NavigationTabBarController.swift */; };
 		EEA4651928245DF50023DE0A /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4651828245DF50023DE0A /* FeedViewController.swift */; };
 		EEA4651B28245E040023DE0A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4651A28245E040023DE0A /* ProfileViewController.swift */; };
 		EEA4651D28246AAF0023DE0A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4651C28246AAF0023DE0A /* PostViewController.swift */; };
+		EEDBEBB72824710700B43993 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDBEBB62824710700B43993 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EEA464FF282456570023DE0A /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEA46502282456570023DE0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEA46504282456570023DE0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EEA46506282456570023DE0A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EEA4650B282456590023DE0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EEA4650E282456590023DE0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EEA46510282456590023DE0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -30,6 +29,7 @@
 		EEA4651828245DF50023DE0A /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		EEA4651A28245E040023DE0A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EEA4651C28246AAF0023DE0A /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		EEDBEBB62824710700B43993 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,10 +64,10 @@
 			children = (
 				EEA46502282456570023DE0A /* AppDelegate.swift */,
 				EEA4651828245DF50023DE0A /* FeedViewController.swift */,
+				EEDBEBB62824710700B43993 /* Post.swift */,
 				EEA4651C28246AAF0023DE0A /* PostViewController.swift */,
 				EEA4651A28245E040023DE0A /* ProfileViewController.swift */,
 				EEA46504282456570023DE0A /* SceneDelegate.swift */,
-				EEA46506282456570023DE0A /* ViewController.swift */,
 				EEA4651628245D1A0023DE0A /* NavigationTabBarController.swift */,
 				EEA4650B282456590023DE0A /* Assets.xcassets */,
 				EEA4650D282456590023DE0A /* LaunchScreen.storyboard */,
@@ -147,8 +147,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEA4651B28245E040023DE0A /* ProfileViewController.swift in Sources */,
-				EEA46507282456570023DE0A /* ViewController.swift in Sources */,
 				EEA4651D28246AAF0023DE0A /* PostViewController.swift in Sources */,
+				EEDBEBB72824710700B43993 /* Post.swift in Sources */,
 				EEA46503282456570023DE0A /* AppDelegate.swift in Sources */,
 				EEA4651928245DF50023DE0A /* FeedViewController.swift in Sources */,
 				EEA4651728245D1A0023DE0A /* NavigationTabBarController.swift in Sources */,

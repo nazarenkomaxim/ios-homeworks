@@ -8,6 +8,8 @@
 import UIKit
 
 class FeedViewController: UIViewController {
+    
+    let post = Post(title: "Пост")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +23,7 @@ class FeedViewController: UIViewController {
         button.center = view.center // Размещаем кнопку по центру экрана
         button.setTitle("Просмотреть", for: .normal)
         button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 10 // Скругление углов кнопки
         
         // Указываем, что должна делать кнопка при нажатии
         button.addTarget(self, action: #selector(viewPost), for: .touchUpInside)
@@ -35,7 +38,9 @@ class FeedViewController: UIViewController {
         // С помощью метода present вызываем postVC при нажатии на кнопку
         present(postVC, animated: true)
         
-        postVC.tabBarItem.title = "Мой пост"
+        postVC.titlePost = post.title
+        
+//        postVC.tabBarItem.title = "Мой пост"
     }
     
 }
