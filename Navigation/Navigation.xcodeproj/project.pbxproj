@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE64E4E22825B2F200C5D960 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE64E4E12825B2F100C5D960 /* InfoViewController.swift */; };
 		EEA46503282456570023DE0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA46502282456570023DE0A /* AppDelegate.swift */; };
 		EEA46505282456570023DE0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA46504282456570023DE0A /* SceneDelegate.swift */; };
 		EEA4650C282456590023DE0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEA4650B282456590023DE0A /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE64E4E12825B2F100C5D960 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		EEA464FF282456570023DE0A /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEA46502282456570023DE0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEA46504282456570023DE0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				EEA4651828245DF50023DE0A /* FeedViewController.swift */,
 				EEDBEBB62824710700B43993 /* Post.swift */,
 				EEA4651C28246AAF0023DE0A /* PostViewController.swift */,
+				EE64E4E12825B2F100C5D960 /* InfoViewController.swift */,
 				EEA4651A28245E040023DE0A /* ProfileViewController.swift */,
 				EEA46504282456570023DE0A /* SceneDelegate.swift */,
 				EEA4651628245D1A0023DE0A /* NavigationTabBarController.swift */,
@@ -152,6 +155,7 @@
 				EEA46503282456570023DE0A /* AppDelegate.swift in Sources */,
 				EEA4651928245DF50023DE0A /* FeedViewController.swift in Sources */,
 				EEA4651728245D1A0023DE0A /* NavigationTabBarController.swift in Sources */,
+				EE64E4E22825B2F200C5D960 /* InfoViewController.swift in Sources */,
 				EEA46505282456570023DE0A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

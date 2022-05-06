@@ -12,21 +12,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Задаем размер
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        // Присваиваем для window VC
-        window?.rootViewController = NavigationTabBarController()
-        
         // Window сделать видимым
         window?.makeKeyAndVisible()
         
+        // Создаем экземпляр класса UITabBarController
+        let tabBarController = UITabBarController()
+        
+
+        // Создаем два экземпляра класса VC
+        let feedVC = FeedViewController()
+        
+        feedVC.tabBarItem.title = "Лента"
+        feedVC.tabBarItem.image = UIImage(systemName: "house.fill")
+
+        let profileVC = ProfileViewController()
+        
+        profileVC.tabBarItem.title = "Профиль"
+        profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
+        
+
+        // Делаем экземпляр класса контроллера навигации
+        let feedNavigationVC = UINavigationController(rootViewController: feedVC)
+        let profileNavigationVC = UINavigationController(rootViewController: profileVC)
+
+
+        // Создаем массив контроллеров, которые будут отображаться
+        tabBarController.viewControllers = [feedNavigationVC, profileNavigationVC]
+
+        
+        // Присваиваем для window VC
+        self.window?.rootViewController = tabBarController
+
         return true
     }
-
+    
     // MARK: UISceneSession Lifecycle
 
 //    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

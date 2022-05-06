@@ -9,7 +9,7 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    let post = Post(title: "Пост")
+    let post = Post(title: "Мой пост")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,17 +30,18 @@ class FeedViewController: UIViewController {
         
         // Добавляем кнопку на View
         view.addSubview(button)
+        
     }
     
     // Код для кнопки
     @objc private func viewPost() {
         let postVC = PostViewController() // Инициализируем
         // С помощью метода present вызываем postVC при нажатии на кнопку
-        present(postVC, animated: true)
+//        present(postVC, animated: true)
         
         postVC.titlePost = post.title
+        navigationController?.pushViewController(postVC, animated: true)
         
-//        postVC.tabBarItem.title = "Мой пост"
     }
     
 }
