@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Создаем экземпляр класса UITabBarController
         let tabBarController = UITabBarController()
-        
 
         // Создаем два экземпляра класса VC
         let feedVC = FeedViewController()
@@ -35,16 +34,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         profileVC.tabBarItem.title = "Профиль"
         profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
         
-
         // Делаем экземпляр класса контроллера навигации
         let feedNavigationVC = UINavigationController(rootViewController: feedVC)
         let profileNavigationVC = UINavigationController(rootViewController: profileVC)
 
-
         // Создаем массив контроллеров, которые будут отображаться
         tabBarController.viewControllers = [feedNavigationVC, profileNavigationVC]
 
-        
         // Присваиваем для window VC
         self.window?.rootViewController = tabBarController
 

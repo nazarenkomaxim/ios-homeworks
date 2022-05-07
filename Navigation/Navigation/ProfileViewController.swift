@@ -14,6 +14,4 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .systemMint
     }
     
-
-
 }

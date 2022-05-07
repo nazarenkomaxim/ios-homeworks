@@ -20,7 +20,7 @@ class PostViewController: UIViewController {
         
         let postVC = PostViewController()
         
-        let postNavigationVC = UINavigationController(rootViewController: postVC)
+        let _ = UINavigationController(rootViewController: postVC)
 
     }
     
@@ -31,10 +31,8 @@ class PostViewController: UIViewController {
 
     @objc private func tapAction() {
         let infoVC = InfoViewController()
-        infoVC.title = "Инфо"
+        infoVC.title = "Информация"
         navigationController?.pushViewController(infoVC, animated: true)
     }
-
-   
 
 }
