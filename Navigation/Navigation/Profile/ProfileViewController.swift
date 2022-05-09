@@ -14,15 +14,24 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Мой профиль"
+
         view.backgroundColor = .lightGray
         view.addSubview(profileHeaderView)
+        profileHeaderView.addSubview(profileHeaderView.profilePhoto)
+        profileHeaderView.addSubview(profileHeaderView.profileName)
+        profileHeaderView.addSubview(profileHeaderView.userStatusLabel)
+        profileHeaderView.addSubview(profileHeaderView.userStatusButton)
+        
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         // Задаем frame, равный frame корневого view
         profileHeaderView.frame = view.safeAreaLayoutGuide.layoutFrame
-        profileHeaderView.backgroundColor = .systemGray3
+        profileHeaderView.backgroundColor = .gray
     }
+    
+    
     
 }
