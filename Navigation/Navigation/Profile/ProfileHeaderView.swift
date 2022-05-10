@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-     
+    
     
     var profilePhoto: UIImageView = {
         let profilePhoto = UIImageView()
@@ -39,16 +39,27 @@ class ProfileHeaderView: UIView {
     
     var userStatusLabel: UILabel = {
         let status = UILabel()
-        status.frame = CGRect(x: 180, y: 125, width: 190, height: 30)
+        status.frame = CGRect(x: 180, y: 115, width: 190, height: 30)
         status.font = UIFont(name: "Helvetica", size: 14)
         status.textColor = .systemGray
         status.text = "Hello world!"
         return status
     }()
     
+    let userTextField: UITextField = {
+        let text = UITextField()
+        text.frame = CGRect(x: 180, y: 150, width: 140, height: 40)
+        text.backgroundColor = .white
+        text.font = UIFont(name: "Helvetica", size: 15)
+        text.layer.cornerRadius = 12
+        
+        return text
+    }()
+
+    
     var userStatusButton: UIButton = {
         let button = UIButton()
-        button.frame = CGRect(x: 16, y: 170, width: 360, height: 50)
+        button.frame = CGRect(x: 16, y: 205, width: 360, height: 50)
         
         button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
         button.backgroundColor = .systemBlue
@@ -63,8 +74,34 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
+    // Инициализируем добавленные компоненты
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(profileName)
+        addSubview(profilePhoto)
+        addSubview(userStatusLabel)
+        addSubview(userTextField)
+        addSubview(userStatusButton)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
     @objc private func tapAction() {
+  
+        // Функция должна выводить в консоль текст из поля "статус".
+//        let text = userStatusLabel.text
+//        if text != nil {
+//            print(text!)
+//        } else {
+//            print("Статус отсутствует.")
+//        }
+        
+        // Измените функцию buttonPressed() так, чтобы при нажатии на кнопку введенный текст устанавливался в качестве статуса
+        userStatusLabel.text = userTextField.text
         
     }
+    
     
 }
