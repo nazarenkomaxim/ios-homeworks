@@ -10,38 +10,76 @@ import UIKit
 class FeedViewController: UIViewController {
     
     let post = Post(title: "Мой пост")
+    
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 10
+        return stackView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemYellow
-        postButton()
+        stackViewSetup()
+
     }
-    
-    // Создаем кнопку и не забываем добавить метод в viewDidLoad
-    private func postButton() {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
-        button.center = view.center // Размещаем кнопку по центру экрана
-        button.setTitle("Просмотреть", for: .normal)
+        
+    lazy var firstFeedButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(firstAction), for: .touchUpInside)
         button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 10 // Скругление углов кнопки
-        
-        // Указываем, что должна делать кнопка при нажатии
-        button.addTarget(self, action: #selector(viewPost), for: .touchUpInside)
-        
-        // Добавляем кнопку на View
-        view.addSubview(button)
-        
-    }
+        button.titleLabel?.textColor = .white
+        button.setTitle("Tap me", for: .normal)
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowRadius = 4
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.7
+        button.layer.cornerRadius = 4
+        return button
+    }()
     
-    // Код для кнопки
-    @objc private func viewPost() {
-        let postVC = PostViewController() // Инициализируем
-        // С помощью метода present вызываем postVC при нажатии на кнопку
-//        present(postVC, animated: true)
-        
+    lazy var secondFeedButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(secondAction), for: .touchUpInside)
+        button.backgroundColor = .systemBlue
+        button.titleLabel?.textColor = .white
+        button.setTitle("Tap me too", for: .normal)
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowRadius = 4
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.7
+        button.layer.cornerRadius = 4
+        return button
+    }()
+    
+    @objc private func firstAction() {
+        let postVC = PostViewController() 
         postVC.titlePost = post.title
         navigationController?.pushViewController(postVC, animated: true)
+    }
+    
+    @objc private func secondAction() {
+        let postVC = PostViewController()
+        postVC.titlePost = post.title
+        navigationController?.pushViewController(postVC, animated: true)
+    }
+    
+    private func stackViewSetup() {
+        view.addSubview(stackView)
         
+        // Когда добавляем элементы на stackView надо использовать addArrangedSubview
+        [firstFeedButton, secondFeedButton].forEach { stackView.addArrangedSubview($0) }
+        
+        NSLayoutConstraint.activate([
+            // Располагаем по центру экрана
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
 }

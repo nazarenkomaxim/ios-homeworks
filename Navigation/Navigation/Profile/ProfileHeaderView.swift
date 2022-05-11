@@ -43,7 +43,7 @@ class ProfileHeaderView: UIView {
         return status
     }()
     
-    let userTextField: UITextField = {
+    var userTextField: UITextField = {
         let text = UITextField()
         text.translatesAutoresizingMaskIntoConstraints = false
         text.backgroundColor = .white
@@ -53,7 +53,7 @@ class ProfileHeaderView: UIView {
         return text
     }()
     
-    var userStatusButton: UIButton = {
+    lazy var userStatusButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
@@ -65,9 +65,34 @@ class ProfileHeaderView: UIView {
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
         button.layer.cornerRadius = 4
-
         return button
     }()
+    
+    var newUserButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        button.addTarget(self, action: #selector(tapNewAction), for: .touchUpInside)
+
+        button.backgroundColor = .systemBlue
+        button.titleLabel?.textColor = .white
+        button.setTitle("New button", for: .normal)
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowRadius = 4
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.7
+        button.layer.cornerRadius = 4
+        return button
+    }()
+    
+    @objc private func tapAction() {
+        // Измените функцию buttonPressed() так, чтобы при нажатии на кнопку введенный текст устанавливался в качестве статуса
+        userStatusLabel.text = userTextField.text
+    }
+
+    @objc private func tapNewAction() {
+        
+    }
     
     // Инициализируем добавленные компоненты
     override init(frame: CGRect) {
@@ -77,16 +102,14 @@ class ProfileHeaderView: UIView {
         addSubview(userStatusLabel)
         addSubview(userTextField)
         addSubview(userStatusButton)
+        addSubview(newUserButton)
     }
 //
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
 //
-    @objc private func tapAction() {
-        // Измените функцию buttonPressed() так, чтобы при нажатии на кнопку введенный текст устанавливался в качестве статуса
-        userStatusLabel.text = userTextField.text
-    }
+
     
     
 }
