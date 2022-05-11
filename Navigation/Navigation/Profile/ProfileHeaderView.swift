@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 class ProfileHeaderView: UIView {
     
     var profilePhotoView: UIImageView = {
@@ -70,8 +69,6 @@ class ProfileHeaderView: UIView {
     }()
     
     
- 
-    
     @objc private func tapAction() {
         // Измените функцию buttonPressed() так, чтобы при нажатии на кнопку введенный текст устанавливался в качестве статуса
         userStatusLabel.text = userTextField.text
@@ -125,16 +122,10 @@ class ProfileHeaderView: UIView {
             userTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
         ])
     }
-    
+
 }
 
-extension ProfileHeaderView {
-    func toAutoLayout() {
-        translatesAutoresizingMaskIntoConstraints = false
-    }
-    func addSubviews(_ subviews: UIView...) {
-        subviews.forEach { addSubview($0) }
-    }
-}
+
+
 
 
