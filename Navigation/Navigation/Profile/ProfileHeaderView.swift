@@ -12,7 +12,7 @@ class ProfileHeaderView: UIView {
     
     var profilePhotoView: UIImageView = {
         let profilePhoto = UIImageView()
-        profilePhoto.translatesAutoresizingMaskIntoConstraints = false
+        profilePhoto.toAutoLayout()
         profilePhoto.image = UIImage(named: "fedor")
         // Толщина рамки
         profilePhoto.layer.borderWidth = 3
@@ -27,7 +27,7 @@ class ProfileHeaderView: UIView {
     
     var profileNameLabel: UILabel = {
         let profileName = UILabel()
-        profileName.translatesAutoresizingMaskIntoConstraints = false
+        profileName.toAutoLayout()
         profileName.font = UIFont(name: "Helvetica-Bold", size: 18)
         profileName.textColor = .black
         profileName.text = "Fedor Nazarenko"
@@ -36,7 +36,7 @@ class ProfileHeaderView: UIView {
     
     var userStatusLabel: UILabel = {
         let status = UILabel()
-        status.translatesAutoresizingMaskIntoConstraints = false
+        status.toAutoLayout()
         status.font = UIFont(name: "Helvetica", size: 14)
         status.textColor = .systemGray
         status.text = "Hello world!"
@@ -45,7 +45,7 @@ class ProfileHeaderView: UIView {
     
     var userTextField: UITextField = {
         let text = UITextField()
-        text.translatesAutoresizingMaskIntoConstraints = false
+        text.toAutoLayout()
         text.backgroundColor = .white
         text.font = UIFont(name: "Helvetica", size: 15)
         text.textAlignment = .center
@@ -55,7 +55,7 @@ class ProfileHeaderView: UIView {
     
     lazy var userStatusButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.toAutoLayout()
         button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
         button.backgroundColor = .systemBlue
         button.titleLabel?.textColor = .white
@@ -75,20 +75,19 @@ class ProfileHeaderView: UIView {
     }
 
     
-    // Инициализируем добавленные компоненты
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        addSubview(profileNameLabel)
-//        addSubview(profilePhotoView)
-//        addSubview(userStatusLabel)
-//        addSubview(userTextField)
-//        addSubview(userStatusButton)
-//        addSubview(newUserButton)
-//    }
+//     Инициализируем добавленные компоненты
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(profileNameLabel)
+        addSubview(profilePhotoView)
+        addSubview(userStatusLabel)
+        addSubview(userTextField)
+        addSubview(userStatusButton)
+    }
 
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//    }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     func setupViews() {
         // Для того, чтобы не добавлять много элементов в addSubview, можно создать замыкание:

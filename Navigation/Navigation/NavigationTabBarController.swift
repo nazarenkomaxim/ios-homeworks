@@ -5,10 +5,12 @@
 //  Created by Maksim Nazarenko on 05.05.2022.
 //
 //import UIKit
+
+// ! Данный Tab Bar оставил для себя, как пример второй реализации ДЗ
 //
 //class NavigationTabBarController: UITabBarController {
 //
-////    // Создаем два экземпляра класса VC
+//    // Создаем два экземпляра класса VC
 //    let feedVC = FeedViewController()
 //    let profileVC = ProfileViewController()
 //

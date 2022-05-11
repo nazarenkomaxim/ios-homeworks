@@ -11,6 +11,7 @@ class ProfileViewController: UIViewController {
     
     let profileHeaderView: ProfileHeaderView = {
         let view = ProfileHeaderView()
+        // Оставил для примера данное свойство, а не метод
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .lightGray
         return view
@@ -18,7 +19,7 @@ class ProfileViewController: UIViewController {
     
     var newUserButton: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.toAutoLayout()
         button.addTarget(self, action: #selector(tapNewAction), for: .touchUpInside)
         button.backgroundColor = .systemBlue
         button.titleLabel?.textColor = .white
