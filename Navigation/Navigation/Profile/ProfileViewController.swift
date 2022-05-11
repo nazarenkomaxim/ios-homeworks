@@ -16,71 +16,52 @@ class ProfileViewController: UIViewController {
         return view
     }()
     
+    var newUserButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(tapNewAction), for: .touchUpInside)
+        button.backgroundColor = .systemBlue
+        button.titleLabel?.textColor = .white
+        button.setTitle("New button", for: .normal)
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowRadius = 4
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.7
+        button.layer.cornerRadius = 4
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Мой профиль"
-        setupViews()
+        constraintHeaderView()
         view.backgroundColor = .lightGray
+        profileHeaderView.setupViews()
     }
     
-    private func setupViews() {
-        // Для того, чтобы не добавлять много элементов в addSubview, можно создать замыкание:
-        [profileHeaderView, profileHeaderView.profilePhotoView, profileHeaderView.profileNameLabel, profileHeaderView.userStatusButton, profileHeaderView.userStatusLabel, profileHeaderView.userTextField, profileHeaderView.newUserButton].forEach { view.addSubview($0) }
+    @objc private func tapNewAction() {
         
-        // profileHeaderView
+    }
+    
+    private func constraintHeaderView() {
+        // Для того, чтобы не добавлять много элементов в addSubview, можно создать замыкание:
+        view.addSubview(profileHeaderView)
+        view.addSubview(newUserButton)
+        
         NSLayoutConstraint.activate([
+            // profileHeaderView
             profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             profileHeaderView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             profileHeaderView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 220),
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-        ])
-        
-        // Фото профиля
-        NSLayoutConstraint.activate([
-            profileHeaderView.profilePhotoView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            profileHeaderView.profilePhotoView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            profileHeaderView.profilePhotoView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 160),
-            profileHeaderView.profilePhotoView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 156)
-        ])
-        
-        // Имя профиля
-        NSLayoutConstraint.activate([
-            profileHeaderView.profileNameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 27),
-            profileHeaderView.profileNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 176),
-            profileHeaderView.profileNameLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 47)
-        ])
-        
-        // Кнопка статуса
-        NSLayoutConstraint.activate([
-            profileHeaderView.userStatusButton.topAnchor.constraint(equalTo: profileHeaderView.profilePhotoView.bottomAnchor, constant: 16),
-            profileHeaderView.userStatusButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            profileHeaderView.userStatusButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-
-        ])
-        
-        // Текст статуса
-        NSLayoutConstraint.activate([
-            profileHeaderView.userStatusLabel.topAnchor.constraint(equalTo: profileHeaderView.userStatusButton.topAnchor, constant: -69),
-            profileHeaderView.userStatusLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 176)
-        ])
-        
-        // Поле для статуса
-        NSLayoutConstraint.activate([
+            profileHeaderView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
-            profileHeaderView.userTextField.topAnchor.constraint(equalTo: profileHeaderView.userStatusButton.topAnchor, constant: -44),
-            profileHeaderView.userTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 176),
-            profileHeaderView.userTextField.bottomAnchor.constraint(equalTo: profileHeaderView.userStatusButton.topAnchor, constant: -10),
-            profileHeaderView.userTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+            // Новая кнопка
+            newUserButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            newUserButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            newUserButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
-        
-        // Новая кнопка
-        NSLayoutConstraint.activate([
-            profileHeaderView.newUserButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            profileHeaderView.newUserButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            profileHeaderView.newUserButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-            
-        ])
-        
     }
+    
+    
     
 }
