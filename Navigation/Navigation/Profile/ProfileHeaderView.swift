@@ -67,14 +67,7 @@ class ProfileHeaderView: UIView {
         button.layer.cornerRadius = 4
         return button
     }()
-    
-    
-    @objc private func tapAction() {
-        // Измените функцию buttonPressed() так, чтобы при нажатии на кнопку введенный текст устанавливался в качестве статуса
-        userStatusLabel.text = userTextField.text
-    }
 
-    
 //     Инициализируем добавленные компоненты
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -83,6 +76,11 @@ class ProfileHeaderView: UIView {
         addSubview(userStatusLabel)
         addSubview(userTextField)
         addSubview(userStatusButton)
+    }
+    
+    @objc private func tapAction() {
+        // Измените функцию buttonPressed() так, чтобы при нажатии на кнопку введенный текст устанавливался в качестве статуса
+        userStatusLabel.text = userTextField.text
     }
 
     required init?(coder: NSCoder) {
