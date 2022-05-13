@@ -6,10 +6,17 @@
 //
 //import UIKit
 
+
+
+
+
 // ! Данный Tab Bar оставил для себя, как пример второй реализации ДЗ
-//
+
+
+
+
 //class NavigationTabBarController: UITabBarController {
-//
+
 //    // Создаем два экземпляра класса VC
 //    let feedVC = FeedViewController()
 //    let profileVC = ProfileViewController()
@@ -32,5 +39,5 @@
 //        viewControllers = [feedVC, profileVC]
 //
 //    }
-//
+
 //}

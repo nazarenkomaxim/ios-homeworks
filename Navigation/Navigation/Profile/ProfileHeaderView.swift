@@ -68,7 +68,7 @@ class ProfileHeaderView: UIView {
         return button
     }()
 
-//     Инициализируем добавленные компоненты
+    // Инициализируем добавленные компоненты
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(profileNameLabel)
@@ -78,14 +78,14 @@ class ProfileHeaderView: UIView {
         addSubview(userStatusButton)
     }
     
-    @objc private func tapAction() {
-        // Измените функцию buttonPressed() так, чтобы при нажатии на кнопку введенный текст устанавливался в качестве статуса
-        userStatusLabel.text = userTextField.text
-    }
-
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
+    @objc private func tapAction() {
+        // Измените функцию buttonPressed() так, чтобы при нажатии на кнопку введенный текст устанавливался в качестве статуса
+        userStatusLabel.text = userTextField.text
+    } 
     
     func setupViews() {
         // Для того, чтобы не добавлять много элементов в addSubview, можно создать замыкание:
