@@ -29,27 +29,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         feedVC.tabBarItem.title = "Лента"
         feedVC.tabBarItem.image = UIImage(systemName: "house.fill")
 
-//        let profileVC = ProfileViewController()
-//        profileVC.tabBarItem.title = "Профиль"
-//        profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
+        let profileVC = ProfileViewController()
+        profileVC.tabBarItem.title = "Профиль"
+        profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
         
-        let newProfileVC: LogInViewController = {
-            let profileVC = LogInViewController()
-            profileVC.tabBarItem.title = "Профиль"
-            profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
-            return profileVC
+        let loginVC: LogInViewController = {
+            let loginVC = LogInViewController()
+            loginVC.tabBarItem.title = "Профиль"
+            loginVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
+            return loginVC
         }()
         
         
         // Делаем экземпляр класса контроллера навигации
         let feedNavigationVC = UINavigationController(rootViewController: feedVC)
-        let profileNavigationVC = UINavigationController(rootViewController: newProfileVC)
+        let profileNavigationVC: UINavigationController = {
+            let navigationController = UINavigationController(rootViewController: profileVC)
+            return navigationController
+        }()
         
         // Скрываем navigationBar на newProfileVC
-        profileNavigationVC.navigationBar.isHidden = true
+//        profileNavigationVC.navigationBar.isHidden = true
 
         // Создаем массив контроллеров, которые будут отображаться
-        tabBarController.viewControllers = [profileNavigationVC, feedNavigationVC]
+        tabBarController.viewControllers = [feedNavigationVC, profileNavigationVC]
 
         // Присваиваем для window VC
         self.window?.rootViewController = tabBarController
