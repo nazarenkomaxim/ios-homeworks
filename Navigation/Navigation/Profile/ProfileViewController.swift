@@ -1,43 +1,76 @@
-//
-//  ProfileViewController.swift
-//  Navigation
-//
-//  Created by Maksim Nazarenko on 05.05.2022.
-//
+
 
 import UIKit
 
 class ProfileViewController: UIViewController {
     
-    let profileHeaderView: ProfileHeaderView = {
-        let view = ProfileHeaderView()
-        // Оставил для примера данное свойство, а не метод
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .lightGray
-        return view
+    // Создаем UITableView
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.toAutoLayout()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
+        return tableView
     }()
         
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "Мой профиль"
-        constraintHeaderView()
-        view.backgroundColor = .lightGray
-        profileHeaderView.setupViews()
-    }
-        
-    private func constraintHeaderView() {
-        view.addSubview(profileHeaderView)
-        
-        NSLayoutConstraint.activate([
-            // profileHeaderView
-            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            profileHeaderView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            profileHeaderView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 220),
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            
-        ])
-    }
+    // Создаем константу, которая отвечает за новости и возвращает массив новостей
+    private let news = Post.makeNews()
     
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            navigationController?.navigationBar.isHidden = true
+
+            self.title = "Мой профиль"
+            constraintHeaderView()
+            view.backgroundColor = .white
+
+        }
     
+        private func constraintHeaderView() {
+            view.addSubview(tableView)
+    
+            NSLayoutConstraint.activate([
+                // profileHeaderView
+                tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+    
+            ])
+        }
+
+    
+}
+
+
+
+// MARK: - UITableViewDataSource
+    // Данный протокол отвечает за наполнение нашей таблицы, у него есть два обязательных метода. Их принято называть numberOfRowsInSection и cellForRowAt
+extension ProfileViewController: UITableViewDataSource {
+    // numberOfRowsInSection - отвечает за количество ячеек в секции
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // Обращаемся к нашему массиву и говорим, что количество ячеек = count массива
+//        return carModel.count
+        return news.count
+    }
+    // cellForRowAt - просит вернуть от нас экземпляр ячейки
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+        cell.setupCell(news[indexPath.row])
+        return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+// Здесь можно выставлять размер ячейки, нажатие на ячейку, добавлять header и footer
+extension ProfileViewController: UITableViewDelegate {
+    // Метод отвечает за высоту ячейку
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // Если поставить цифру, то можно задать дефолтную высоту, допустим 100 или 200, но если надо чтобы таблица была динамической, то надо писать: (чтобы работало - элементы должны быть привязаны как к низу, так и к верху ячейки)
+        
+        UITableView.automaticDimension
+    }
     
 }

@@ -20,7 +20,8 @@
 		EEB0A4E1282BD73D006D64B9 /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A4E0282BD73D006D64B9 /* ExtensionUIView.swift */; };
 		EEB0A50B282EB803006D64B9 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A50A282EB803006D64B9 /* LogInViewController.swift */; };
 		EEB0A50D282EC1BF006D64B9 /* LogInVeiw.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A50C282EC1BF006D64B9 /* LogInVeiw.swift */; };
-		EEDBEBB72824710700B43993 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDBEBB62824710700B43993 /* Post.swift */; };
+		EEB0A50F28311538006D64B9 /* NewsFeedStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A50E28311538006D64B9 /* NewsFeedStruct.swift */; };
+		EEB0A5112831365E006D64B9 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A5102831365E006D64B9 /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +40,8 @@
 		EEB0A4E0282BD73D006D64B9 /* ExtensionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
 		EEB0A50A282EB803006D64B9 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		EEB0A50C282EC1BF006D64B9 /* LogInVeiw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVeiw.swift; sourceTree = "<group>"; };
-		EEDBEBB62824710700B43993 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		EEB0A50E28311538006D64B9 /* NewsFeedStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedStruct.swift; sourceTree = "<group>"; };
+		EEB0A5102831365E006D64B9 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +59,10 @@
 			isa = PBXGroup;
 			children = (
 				EEA4651A28245E040023DE0A /* ProfileViewController.swift */,
+				EEB0A5102831365E006D64B9 /* PostTableViewCell.swift */,
 				EE64E50B28284F2000C5D960 /* ProfileHeaderView.swift */,
 				EEB0A50A282EB803006D64B9 /* LogInViewController.swift */,
+				EEB0A50E28311538006D64B9 /* NewsFeedStruct.swift */,
 				EEB0A50C282EC1BF006D64B9 /* LogInVeiw.swift */,
 			);
 			path = Profile;
@@ -86,7 +90,6 @@
 				EE64E50728284E2100C5D960 /* Profile */,
 				EEA46502282456570023DE0A /* AppDelegate.swift */,
 				EEA4651828245DF50023DE0A /* FeedViewController.swift */,
-				EEDBEBB62824710700B43993 /* Post.swift */,
 				EEA4651C28246AAF0023DE0A /* PostViewController.swift */,
 				EE64E4E12825B2F100C5D960 /* InfoViewController.swift */,
 				EEA46504282456570023DE0A /* SceneDelegate.swift */,
@@ -169,9 +172,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEB0A50F28311538006D64B9 /* NewsFeedStruct.swift in Sources */,
 				EEA4651B28245E040023DE0A /* ProfileViewController.swift in Sources */,
+				EEB0A5112831365E006D64B9 /* PostTableViewCell.swift in Sources */,
 				EEA4651D28246AAF0023DE0A /* PostViewController.swift in Sources */,
-				EEDBEBB72824710700B43993 /* Post.swift in Sources */,
 				EEA46503282456570023DE0A /* AppDelegate.swift in Sources */,
 				EEB0A50D282EC1BF006D64B9 /* LogInVeiw.swift in Sources */,
 				EEB0A4E1282BD73D006D64B9 /* ExtensionUIView.swift in Sources */,

@@ -9,7 +9,7 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    let post = Post(title: "Мой пост")
+//    let post = Post(title: "Мой пост")
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -58,14 +58,14 @@ class FeedViewController: UIViewController {
     }()
     
     @objc private func firstAction() {
-        let profileVC = ProfileViewController()
-//        profileVC.titlePost = post.title
-        navigationController?.pushViewController(profileVC, animated: true)
+        let postVC = PostViewController()
+        postVC.titlePost = ""
+        navigationController?.pushViewController(postVC, animated: true)
     }
     
     @objc private func secondAction() {
         let postVC = PostViewController()
-        postVC.titlePost = post.title
+        postVC.titlePost = ""
         navigationController?.pushViewController(postVC, animated: true)
     }
     

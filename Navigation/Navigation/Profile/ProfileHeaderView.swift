@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class ProfileHeaderView: UIView {
-    
+
     var profilePhotoView: UIImageView = {
         let profilePhoto = UIImageView()
         profilePhoto.toAutoLayout()
@@ -88,6 +88,7 @@ class ProfileHeaderView: UIView {
     }
     
     func setupViews() {
+        
         // Для того, чтобы не добавлять много элементов в addSubview, можно создать замыкание:
         [profilePhotoView, profileNameLabel, userStatusButton, userStatusLabel, userTextField].forEach { self.addSubview($0) }
                 

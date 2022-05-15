@@ -10,6 +10,7 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    
     // Создаем экземпляр стандартного класса Notification Center (ловит изменения и сообщает их своим подписчикам)
     let notificationCenter = NotificationCenter.default
     
@@ -194,7 +195,15 @@ class LogInViewController: UIViewController {
             loginBlueButton.leadingAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             loginBlueButton.heightAnchor.constraint(equalToConstant: 50),
             loginBlueButton.trailingAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            loginBlueButton.bottomAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.bottomAnchor)
+            loginBlueButton.bottomAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.bottomAnchor),
+            
+            // tableView
+//            tableView.topAnchor.constraint(equalTo: loginBlueButton.bottomAnchor, constant: 16),
+//            tableView.leadingAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+////            tableView.heightAnchor.constraint(equalToConstant: 50),
+//            tableView.trailingAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+//            tableView.bottomAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.bottomAnchor)
+
 
         ])
         
@@ -212,4 +221,5 @@ extension LogInViewController: UITextFieldDelegate {
         return true
     }
 }
+
 
