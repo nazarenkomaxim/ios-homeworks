@@ -6,7 +6,7 @@ class ProfileViewController: UIViewController {
     
     // Создаем UITableView
     private lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.toAutoLayout()
         tableView.dataSource = self
         tableView.delegate = self
@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController {
             self.title = "Мой профиль"
             constraintHeaderView()
             view.backgroundColor = .white
-
+            
         }
     
         private func constraintHeaderView() {
@@ -39,10 +39,7 @@ class ProfileViewController: UIViewController {
     
             ])
         }
-
-    
 }
-
 
 
 // MARK: - UITableViewDataSource
@@ -60,6 +57,10 @@ extension ProfileViewController: UITableViewDataSource {
         cell.setupCell(news[indexPath.row])
         return cell
     }
+    
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        news.count
+//    }
 }
 
 // MARK: - UITableViewDelegate
@@ -71,6 +72,20 @@ extension ProfileViewController: UITableViewDelegate {
         // Если поставить цифру, то можно задать дефолтную высоту, допустим 100 или 200, но если надо чтобы таблица была динамической, то надо писать: (чтобы работало - элементы должны быть привязаны как к низу, так и к верху ячейки)
         
         UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = ProfileHeaderView()
+        header.toAutoLayout()
+        header.setupViews()
+        
+        
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        section == 0 ? 220 : 0
+//        UITableView.automaticDimension
     }
     
 }

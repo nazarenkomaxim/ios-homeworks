@@ -49,6 +49,9 @@ class PostTableViewCell: UITableViewCell {
         let label = UILabel()
         label.toAutoLayout()
         label.font = UIFont.systemFont(ofSize: 16)
+        label.text = "Нравится: "
+        label.textColor = .black
+
         return label
     }()
 
@@ -56,6 +59,8 @@ class PostTableViewCell: UITableViewCell {
         let label = UILabel()
         label.toAutoLayout()
         label.font = UIFont.systemFont(ofSize: 16)
+        label.text = "Просмотры: "
+        label.textColor = .black
         return label
     }()
     
@@ -76,8 +81,8 @@ class PostTableViewCell: UITableViewCell {
         newsImageView.image = post.image
         headingLabel.text = post.heading
         descriptionLabel.text = post.description
-        likesLabel.text? = String(post.likes)
-        viewsLabel.text? = String(post.views)
+        likesLabel.text = likesLabel.text! + String(post.likes)
+        viewsLabel.text = viewsLabel.text! + String(post.views)
         
     }
     
