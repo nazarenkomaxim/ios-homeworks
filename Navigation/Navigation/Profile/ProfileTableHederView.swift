@@ -84,7 +84,6 @@ class ProfileHeaderView: UIView {
         addSubview(userStatusLabel)
         addSubview(userTextField)
         addSubview(userStatusButton)
-
     }
     
     required init?(coder: NSCoder) {

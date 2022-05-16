@@ -76,7 +76,6 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = ProfileHeaderView()
-        header.toAutoLayout()
         header.setupViews()
         
         
