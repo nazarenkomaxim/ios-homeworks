@@ -8,7 +8,7 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
-
+    
     private let whiteView: UIView = {
         let view = UIView()
         view.toAutoLayout()
@@ -51,10 +51,10 @@ class PostTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 16)
         label.text = "Нравится: "
         label.textColor = .black
-
+        
         return label
     }()
-
+    
     private var viewsLabel: UILabel = {
         let label = UILabel()
         label.toAutoLayout()
@@ -67,14 +67,11 @@ class PostTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layout()
-//        customizeCell()
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     // Метод для настройки ячеек
     func setupCell(_ post: Post) {
@@ -83,14 +80,14 @@ class PostTableViewCell: UITableViewCell {
         descriptionLabel.text = post.description
         likesLabel.text = likesLabel.text! + String(post.likes)
         viewsLabel.text = viewsLabel.text! + String(post.views)
-        
+
     }
     
     
     private func layout() {
         // В UITableViewCell вместо view указываем contentView
         [whiteView, headingLabel, newsImageView, descriptionLabel, likesLabel, viewsLabel].forEach { contentView.addSubview($0) }
-                
+        
         NSLayoutConstraint.activate([
             // Фон
             whiteView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
@@ -98,24 +95,18 @@ class PostTableViewCell: UITableViewCell {
             whiteView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             whiteView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             
-            
             // Заголовок новости
             headingLabel.topAnchor.constraint(equalTo: whiteView.topAnchor, constant: 8),
             headingLabel.leadingAnchor.constraint(equalTo: whiteView.leadingAnchor, constant: 8),
-//            headingLabel.bottomAnchor.constraint(equalTo: newsImageView.topAnchor, constant: -8),
             headingLabel.trailingAnchor.constraint(equalTo: whiteView.trailingAnchor, constant: -8),
-
-//            headingLabel.widthAnchor.constraint(equalToConstant: 100),
-
+                        
             // Картинка
             newsImageView.topAnchor.constraint(equalTo: headingLabel.bottomAnchor, constant: 8),
             newsImageView.leadingAnchor.constraint(equalTo: whiteView.leadingAnchor, constant: 8),
             newsImageView.trailingAnchor.constraint(equalTo: whiteView.trailingAnchor, constant: -8),
             newsImageView.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -10),
             newsImageView.heightAnchor.constraint(equalTo: newsImageView.heightAnchor),
-//            newsImageView.widthAnchor.constraint(equalTo: whiteView.widthAnchor, constant: -10),
             
-
             // Описание новости
             descriptionLabel.topAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: 10),
             descriptionLabel.leadingAnchor.constraint(equalTo: whiteView.leadingAnchor, constant: 8),
@@ -125,19 +116,13 @@ class PostTableViewCell: UITableViewCell {
             // Лайки Int
             likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
             likesLabel.leadingAnchor.constraint(equalTo: whiteView.leadingAnchor, constant: 8),
-//            likesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             likesLabel.bottomAnchor.constraint(equalTo: whiteView.bottomAnchor, constant: -8),
             
             // Просмотры Int
             viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
-//            newsImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             viewsLabel.trailingAnchor.constraint(equalTo: whiteView.trailingAnchor, constant: -8),
             viewsLabel.bottomAnchor.constraint(equalTo: whiteView.bottomAnchor, constant: -8),
-
-
-
-
-        
+                        
         ])
         
     }

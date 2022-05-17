@@ -10,7 +10,6 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    
     // Создаем экземпляр стандартного класса Notification Center (ловит изменения и сообщает их своим подписчикам)
     let notificationCenter = NotificationCenter.default
     
@@ -100,7 +99,6 @@ class LogInViewController: UIViewController {
     }()
 
     @objc func moveToProfile() {
-
         let profileVC = ProfileViewController()
         navigationController?.pushViewController(profileVC, animated: true)
     
@@ -128,7 +126,6 @@ class LogInViewController: UIViewController {
         super.viewWillDisappear(animated)
         notificationCenter.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         notificationCenter.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        
     }
     
     // Данный метод будет срабатывать когда клавиатура показалась
@@ -197,14 +194,6 @@ class LogInViewController: UIViewController {
             loginBlueButton.trailingAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             loginBlueButton.bottomAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.bottomAnchor),
             
-            // tableView
-//            tableView.topAnchor.constraint(equalTo: loginBlueButton.bottomAnchor, constant: 16),
-//            tableView.leadingAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-////            tableView.heightAnchor.constraint(equalToConstant: 50),
-//            tableView.trailingAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-//            tableView.bottomAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.bottomAnchor)
-
-
         ])
         
     }

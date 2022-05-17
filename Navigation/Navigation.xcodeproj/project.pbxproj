@@ -19,7 +19,6 @@
 		EEA4651D28246AAF0023DE0A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA4651C28246AAF0023DE0A /* PostViewController.swift */; };
 		EEB0A4E1282BD73D006D64B9 /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A4E0282BD73D006D64B9 /* ExtensionUIView.swift */; };
 		EEB0A50B282EB803006D64B9 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A50A282EB803006D64B9 /* LogInViewController.swift */; };
-		EEB0A50D282EC1BF006D64B9 /* LogInVeiw.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A50C282EC1BF006D64B9 /* LogInVeiw.swift */; };
 		EEB0A50F28311538006D64B9 /* NewsFeedStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A50E28311538006D64B9 /* NewsFeedStruct.swift */; };
 		EEB0A5112831365E006D64B9 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A5102831365E006D64B9 /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -39,7 +38,6 @@
 		EEA4651C28246AAF0023DE0A /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		EEB0A4E0282BD73D006D64B9 /* ExtensionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
 		EEB0A50A282EB803006D64B9 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		EEB0A50C282EC1BF006D64B9 /* LogInVeiw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVeiw.swift; sourceTree = "<group>"; };
 		EEB0A50E28311538006D64B9 /* NewsFeedStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedStruct.swift; sourceTree = "<group>"; };
 		EEB0A5102831365E006D64B9 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,7 +61,6 @@
 				EE64E50B28284F2000C5D960 /* ProfileTableHederView.swift */,
 				EEB0A50A282EB803006D64B9 /* LogInViewController.swift */,
 				EEB0A50E28311538006D64B9 /* NewsFeedStruct.swift */,
-				EEB0A50C282EC1BF006D64B9 /* LogInVeiw.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -177,7 +174,6 @@
 				EEB0A5112831365E006D64B9 /* PostTableViewCell.swift in Sources */,
 				EEA4651D28246AAF0023DE0A /* PostViewController.swift in Sources */,
 				EEA46503282456570023DE0A /* AppDelegate.swift in Sources */,
-				EEB0A50D282EC1BF006D64B9 /* LogInVeiw.swift in Sources */,
 				EEB0A4E1282BD73D006D64B9 /* ExtensionUIView.swift in Sources */,
 				EE64E50C28284F2000C5D960 /* ProfileTableHederView.swift in Sources */,
 				EEA4651928245DF50023DE0A /* FeedViewController.swift in Sources */,

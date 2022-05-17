@@ -126,6 +126,7 @@ class ProfileHeaderView: UIView {
             userTextField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 176),
             userTextField.bottomAnchor.constraint(equalTo: userStatusButton.topAnchor, constant: -10),
             userTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            
         ])
     }
 
