@@ -20,7 +20,6 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
-        
         self.title = "Мой профиль"
         constraintHeaderView()
         view.backgroundColor = .white
@@ -72,8 +71,6 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = ProfileHeaderView()
         header.setupViews()
-        
-        
         return header
     }
     
