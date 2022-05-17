@@ -27,7 +27,7 @@ class ProfileHeaderView: UIView {
         // Цвет рамки, кастим до cgColor
         profilePhoto.layer.borderColor = UIColor.white.cgColor
         // Радиус сглаживания, чтобы был круг делим на два
-        profilePhoto.layer.cornerRadius = 70
+        profilePhoto.layer.cornerRadius = 80
         // Обрезать фото по радиусу
         profilePhoto.layer.masksToBounds = true
         return profilePhoto
@@ -104,28 +104,33 @@ class ProfileHeaderView: UIView {
 //             Фото профиля
             profilePhotoView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             profilePhotoView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            profilePhotoView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 160),
-            profilePhotoView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 156),
+//            profilePhotoView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 160),
+//            profilePhotoView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 156),
+            profilePhotoView.widthAnchor.constraint(equalToConstant: 160),
+            profilePhotoView.heightAnchor.constraint(equalToConstant: 160),
+
         
 //         Имя профиля
             profileNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
-            profileNameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 176),
+            profileNameLabel.leadingAnchor.constraint(equalTo: profilePhotoView.trailingAnchor, constant: 30),
             profileNameLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 47),
 
 //         Кнопка статуса
-            userStatusButton.topAnchor.constraint(equalTo: profilePhotoView.bottomAnchor, constant: 16),
-            userStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 176),
+            userStatusButton.topAnchor.constraint(equalTo: userTextField.bottomAnchor, constant: 16),
+            userStatusButton.leadingAnchor.constraint(equalTo: profilePhotoView.trailingAnchor, constant: 30),
             userStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            userStatusButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
 
 //         Текст статуса
-            userStatusLabel.topAnchor.constraint(equalTo: userStatusButton.topAnchor, constant: -69),
-            userStatusLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 176),
+            userStatusLabel.topAnchor.constraint(equalTo: profileNameLabel.bottomAnchor, constant: 40),
+            userStatusLabel.leadingAnchor.constraint(equalTo: profilePhotoView.trailingAnchor, constant: 30),
 
 //         Поле для статуса
-            userTextField.topAnchor.constraint(equalTo: userStatusButton.topAnchor, constant: -44),
-            userTextField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 176),
-            userTextField.bottomAnchor.constraint(equalTo: userStatusButton.topAnchor, constant: -10),
+            userTextField.topAnchor.constraint(equalTo: userStatusLabel.bottomAnchor, constant: 20),
+            userTextField.leadingAnchor.constraint(equalTo: profilePhotoView.trailingAnchor, constant: 30),
+//            userTextField.bottomAnchor.constraint(equalTo: userStatusButton.topAnchor, constant: -10),
             userTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            userStatusButton.heightAnchor.constraint(equalToConstant: 40)
             
         ])
     }

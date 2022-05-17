@@ -146,29 +146,24 @@ class LogInViewController: UIViewController {
         
         view.addSubviews(scrollView)
         
+        scrollView.addSubview(loginView)
+        
+        [logoView, loginTextField, passwordTextField, loginBlueButton].forEach { loginView.addSubview($0) }
+        
         NSLayoutConstraint.activate([
             // scrollView
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-        ])
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         
-        scrollView.addSubview(loginView)
-        
-        NSLayoutConstraint.activate([
             // LogInVeiw
             loginView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             loginView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             loginView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             loginView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            loginView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
-        ])
+            loginView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         
-        [logoView, loginTextField, passwordTextField, loginBlueButton].forEach { loginView.addSubview($0) }
-        
-        NSLayoutConstraint.activate([
-            
             // logoView
             logoView.topAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.topAnchor, constant: 120),
             logoView.centerXAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.centerXAnchor),
