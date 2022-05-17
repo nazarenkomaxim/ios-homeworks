@@ -9,6 +9,12 @@ import Foundation
 import UIKit
 
 public extension UIView {
+    
+    // Берём из класса - название нашего класса
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
     func toAutoLayout() {
         translatesAutoresizingMaskIntoConstraints = false
     }

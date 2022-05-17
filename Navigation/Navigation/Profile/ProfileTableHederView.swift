@@ -10,6 +10,14 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
+    let whiteView: UIView = {
+        let view = UIView()
+        view.toAutoLayout()
+        view.clipsToBounds = true
+        view.backgroundColor = .white
+        return view
+    }()
+
     var profilePhotoView: UIImageView = {
         let profilePhoto = UIImageView()
         profilePhoto.toAutoLayout()
@@ -19,7 +27,7 @@ class ProfileHeaderView: UIView {
         // Цвет рамки, кастим до cgColor
         profilePhoto.layer.borderColor = UIColor.white.cgColor
         // Радиус сглаживания, чтобы был круг делим на два
-        profilePhoto.layer.cornerRadius = 70
+        profilePhoto.layer.cornerRadius = 80
         // Обрезать фото по радиусу
         profilePhoto.layer.masksToBounds = true
         return profilePhoto
@@ -68,7 +76,7 @@ class ProfileHeaderView: UIView {
         return button
     }()
 
-//     Инициализируем добавленные компоненты
+    // Инициализируем добавленные компоненты
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(profileNameLabel)
@@ -78,45 +86,52 @@ class ProfileHeaderView: UIView {
         addSubview(userStatusButton)
     }
     
-    @objc private func tapAction() {
-        // Измените функцию buttonPressed() так, чтобы при нажатии на кнопку введенный текст устанавливался в качестве статуса
-        userStatusLabel.text = userTextField.text
-    }
-
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
+    @objc private func tapAction() {
+        // Измените функцию buttonPressed() так, чтобы при нажатии на кнопку введенный текст устанавливался в качестве статуса
+        userStatusLabel.text = userTextField.text
+    }
+    
     func setupViews() {
-        // Для того, чтобы не добавлять много элементов в addSubview, можно создать замыкание:
+        
+//         Для того, чтобы не добавлять много элементов в addSubview, можно создать замыкание:
         [profilePhotoView, profileNameLabel, userStatusButton, userStatusLabel, userTextField].forEach { self.addSubview($0) }
                 
         NSLayoutConstraint.activate([
-            // Фото профиля
-            profilePhotoView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+//             Фото профиля
+            profilePhotoView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             profilePhotoView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            profilePhotoView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 160),
-            profilePhotoView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 156),
+//            profilePhotoView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 160),
+//            profilePhotoView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 156),
+            profilePhotoView.widthAnchor.constraint(equalToConstant: 160),
+            profilePhotoView.heightAnchor.constraint(equalToConstant: 160),
+
         
-        // Имя профиля
+//         Имя профиля
             profileNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
-            profileNameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 176),
+            profileNameLabel.leadingAnchor.constraint(equalTo: profilePhotoView.trailingAnchor, constant: 30),
             profileNameLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 47),
-        
-        // Кнопка статуса
-            userStatusButton.topAnchor.constraint(equalTo: profilePhotoView.bottomAnchor, constant: 16),
-            userStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+
+//         Кнопка статуса
+            userStatusButton.topAnchor.constraint(equalTo: userTextField.bottomAnchor, constant: 16),
+            userStatusButton.leadingAnchor.constraint(equalTo: profilePhotoView.trailingAnchor, constant: 30),
             userStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
-        
-        // Текст статуса
-            userStatusLabel.topAnchor.constraint(equalTo: userStatusButton.topAnchor, constant: -69),
-            userStatusLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 176),
-        
-        // Поле для статуса
-            userTextField.topAnchor.constraint(equalTo: userStatusButton.topAnchor, constant: -44),
-            userTextField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 176),
-            userTextField.bottomAnchor.constraint(equalTo: userStatusButton.topAnchor, constant: -10),
+            userStatusButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
+
+//         Текст статуса
+            userStatusLabel.topAnchor.constraint(equalTo: profileNameLabel.bottomAnchor, constant: 40),
+            userStatusLabel.leadingAnchor.constraint(equalTo: profilePhotoView.trailingAnchor, constant: 30),
+
+//         Поле для статуса
+            userTextField.topAnchor.constraint(equalTo: userStatusLabel.bottomAnchor, constant: 20),
+            userTextField.leadingAnchor.constraint(equalTo: profilePhotoView.trailingAnchor, constant: 30),
+//            userTextField.bottomAnchor.constraint(equalTo: userStatusButton.topAnchor, constant: -10),
             userTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            userStatusButton.heightAnchor.constraint(equalToConstant: 40)
+            
         ])
     }
 

@@ -9,7 +9,7 @@ import UIKit
 
 class FeedViewController: UIViewController {
     
-    let post = Post(title: "Мой пост")
+//    let post = Post(title: "Мой пост")
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -33,7 +33,7 @@ class FeedViewController: UIViewController {
         button.addTarget(self, action: #selector(firstAction), for: .touchUpInside)
         button.backgroundColor = .systemBlue
         button.titleLabel?.textColor = .white
-        button.setTitle("Tap me", for: .normal)
+        button.setTitle("Профиль", for: .normal)
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
@@ -48,7 +48,7 @@ class FeedViewController: UIViewController {
         button.addTarget(self, action: #selector(secondAction), for: .touchUpInside)
         button.backgroundColor = .systemBlue
         button.titleLabel?.textColor = .white
-        button.setTitle("Tap me too", for: .normal)
+        button.setTitle("Tap me", for: .normal)
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
@@ -58,14 +58,14 @@ class FeedViewController: UIViewController {
     }()
     
     @objc private func firstAction() {
-        let postVC = PostViewController() 
-        postVC.titlePost = post.title
+        let postVC = PostViewController()
+        postVC.titlePost = ""
         navigationController?.pushViewController(postVC, animated: true)
     }
     
     @objc private func secondAction() {
         let postVC = PostViewController()
-        postVC.titlePost = post.title
+        postVC.titlePost = ""
         navigationController?.pushViewController(postVC, animated: true)
     }
     

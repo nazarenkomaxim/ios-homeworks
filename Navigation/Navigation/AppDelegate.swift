@@ -29,14 +29,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         feedVC.tabBarItem.title = "Лента"
         feedVC.tabBarItem.image = UIImage(systemName: "house.fill")
 
-        let profileVC = ProfileViewController()
+//        let profileVC = ProfileViewController()
+//        profileVC.tabBarItem.title = "Профиль"
+//        profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
         
-        profileVC.tabBarItem.title = "Профиль"
-        profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
+        let loginVC: LogInViewController = {
+            let loginVC = LogInViewController()
+            loginVC.tabBarItem.title = "Профиль"
+            loginVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
+            return loginVC
+        }()
+        
         
         // Делаем экземпляр класса контроллера навигации
         let feedNavigationVC = UINavigationController(rootViewController: feedVC)
-        let profileNavigationVC = UINavigationController(rootViewController: profileVC)
+        let profileNavigationVC: UINavigationController = {
+            let navigationController = UINavigationController(rootViewController: loginVC)
+            return navigationController
+        }()
+        
+        // Скрываем navigationBar на newProfileVC
+//        profileNavigationVC.navigationBar.isHidden = true
 
         // Создаем массив контроллеров, которые будут отображаться
         tabBarController.viewControllers = [feedNavigationVC, profileNavigationVC]
