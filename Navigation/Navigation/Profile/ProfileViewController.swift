@@ -11,7 +11,6 @@ class ProfileViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
-//        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
         return tableView
     }()
     
@@ -32,12 +31,12 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         self.title = "Мой профиль"
         layout()
-        view.backgroundColor = .systemRed
+        view.backgroundColor = .white
         
     }
     
     private func layout() {
-        view.addSubview(tableViewPost)
+        view.addSubviews(tableViewPost)
         view.addSubviews(tableViewPhotos)
         
         NSLayoutConstraint.activate([
@@ -45,12 +44,12 @@ class ProfileViewController: UIViewController {
             // tableViewPhotos
             tableViewPhotos.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableViewPhotos.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableViewPhotos.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-//            tableViewPhotos.heightAnchor.constraint(equalToConstant: 400),
+            tableViewPhotos.bottomAnchor.constraint(equalTo: tableViewPost.topAnchor, constant: -12),
+            tableViewPhotos.heightAnchor.constraint(equalToConstant: 340),
             tableViewPhotos.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
             // tableViewPost
-            tableViewPost.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            //            tableViewPost.topAnchor.constraint(equalTo: tableViewPhotos.topAnchor),
             tableViewPost.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableViewPost.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             tableViewPost.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
@@ -76,12 +75,10 @@ extension ProfileViewController: UITableViewDataSource {
         default:
             return .zero
         }
-//        let section = news.count
-//        return section
     }
+    
     // cellForRowAt - просит вернуть от нас экземпляр ячейки
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         switch tableView {
         case tableViewPost:
             let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
@@ -93,15 +90,6 @@ extension ProfileViewController: UITableViewDataSource {
         default:
             return UITableViewCell()
         }
-        
-//        let photoCell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as! PhotosTableViewCell
-//
-//        // Если ячейка равняется 0, то возвращаем photoCell, иначе newsCell
-//        if indexPath.item == 0 {
-//            return photoCell
-//        } else {
-//            return newsCell
-//        }
     }
 }
 
@@ -112,7 +100,14 @@ extension ProfileViewController: UITableViewDelegate {
     // Метод отвечает за высоту ячейку
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // Если поставить цифру, то можно задать дефолтную высоту, допустим 100 или 200, но если надо чтобы таблица была динамической, то надо писать: (чтобы работало - элементы должны быть привязаны как к низу, так и к верху ячейки)
-        UITableView.automaticDimension
+        switch tableView {
+        case tableViewPost:
+            return UITableView.automaticDimension
+        case tableViewPhotos:
+            return 120
+        default:
+            return UITableView.automaticDimension
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
