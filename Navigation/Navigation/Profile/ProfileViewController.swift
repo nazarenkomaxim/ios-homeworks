@@ -5,12 +5,22 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     // Создаем UITableView
-    private lazy var tableView: UITableView = {
+    private lazy var tableViewPost: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.toAutoLayout()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
+//        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
+        return tableView
+    }()
+    
+    private lazy var tableViewPhotos: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.toAutoLayout()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
         return tableView
     }()
     
@@ -21,20 +31,29 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         self.title = "Мой профиль"
-        constraintHeaderView()
-        view.backgroundColor = .white
+        layout()
+        view.backgroundColor = .systemRed
         
     }
     
-    private func constraintHeaderView() {
-        view.addSubview(tableView)
+    private func layout() {
+        view.addSubview(tableViewPost)
+        view.addSubviews(tableViewPhotos)
         
         NSLayoutConstraint.activate([
-            // profileHeaderView
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+            
+            // tableViewPhotos
+            tableViewPhotos.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableViewPhotos.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableViewPhotos.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+//            tableViewPhotos.heightAnchor.constraint(equalToConstant: 400),
+            tableViewPhotos.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            
+            // tableViewPost
+            tableViewPost.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableViewPost.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableViewPost.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableViewPost.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
             
         ])
     }
@@ -47,14 +66,42 @@ extension ProfileViewController: UITableViewDataSource {
     // numberOfRowsInSection - отвечает за количество ячеек в секции
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Обращаемся к нашему массиву и говорим, что количество ячеек = count массива
-        //        return carModel.count
-        return news.count
+        switch tableView {
+        case tableViewPost:
+            let section = news.count
+            return section
+        case tableViewPhotos:
+            let section = 1
+            return section
+        default:
+            return .zero
+        }
+//        let section = news.count
+//        return section
     }
     // cellForRowAt - просит вернуть от нас экземпляр ячейки
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
-        cell.setupCell(news[indexPath.row])
-        return cell
+        
+        switch tableView {
+        case tableViewPost:
+            let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+            cell.setupCell(news[indexPath.row])
+            return cell
+        case tableViewPhotos:
+            let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as! PhotosTableViewCell
+            return cell
+        default:
+            return UITableViewCell()
+        }
+        
+//        let photoCell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as! PhotosTableViewCell
+//
+//        // Если ячейка равняется 0, то возвращаем photoCell, иначе newsCell
+//        if indexPath.item == 0 {
+//            return photoCell
+//        } else {
+//            return newsCell
+//        }
     }
 }
 
@@ -73,9 +120,5 @@ extension ProfileViewController: UITableViewDelegate {
         header.setupViews()
         return header
     }
-    
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        section == 0 ? 220 : 0
-//    }
     
 }
