@@ -104,8 +104,6 @@ class ProfileHeaderView: UIView {
 //             Фото профиля
             profilePhotoView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             profilePhotoView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-//            profilePhotoView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 160),
-//            profilePhotoView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 156),
             profilePhotoView.widthAnchor.constraint(equalToConstant: 160),
             profilePhotoView.heightAnchor.constraint(equalToConstant: 160),
 

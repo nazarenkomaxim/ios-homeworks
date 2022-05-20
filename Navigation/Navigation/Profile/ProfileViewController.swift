@@ -27,6 +27,12 @@ class ProfileViewController: UIViewController {
         layout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+
     private func layout() {
         view.addSubviews(tableView)
         
@@ -101,13 +107,13 @@ extension ProfileViewController: UITableViewDelegate {
             return nil
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let photosVC = PhotosViewController()
+            navigationController?.pushViewController(photosVC, animated: true)
+        }
+        
+    }
+    
 }
-
-// MARK: - PhotosTableViewCell
-
-//extension ProfileViewController: PhotosTableViewCell {
-//
-//    func didSelect() {
-//
-//    }
-//}

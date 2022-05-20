@@ -17,7 +17,6 @@ class PhotosViewController: UIViewController {
         return array
     }
     
-    
     private lazy var photosCollection: UICollectionView = {
         // Вначале создаем layout
         let layout = UICollectionViewFlowLayout()
@@ -28,7 +27,6 @@ class PhotosViewController: UIViewController {
         collection.delegate = self
         collection.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.identifier)
         return collection
-        
     }()
     
     override func viewDidLoad() {
@@ -36,6 +34,14 @@ class PhotosViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .systemCyan
         layout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.backButtonTitle = "Назад"
+        navigationItem.title = "Галерея фото"
     }
     
     private func layout() {
@@ -51,8 +57,6 @@ class PhotosViewController: UIViewController {
             
         ])
     }
-    
-    
 }
 
 // MARK: - UICollectionViewDataSource
@@ -61,7 +65,6 @@ class PhotosViewController: UIViewController {
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // Обращаемся к нашему массиву и говорим, что количество ячеек = count массива
-        
         arrayPhoto.count
     }
     
@@ -70,10 +73,10 @@ extension PhotosViewController: UICollectionViewDataSource {
         // UICollectionViewCell() - дефолтная пустая ячейка
         // Но нам надо зарегистрировать ячейку и скастить её до нашего класса.
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as! PhotosCollectionViewCell
+        let photo = arrayPhoto[indexPath.item]
+        cell.setupView(with: photo)
         return cell
     }
-    
-    
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

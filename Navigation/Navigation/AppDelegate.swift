@@ -36,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return loginVC
         }()
         
-        
         // Делаем экземпляр класса контроллера навигации
         let feedNavigationVC = UINavigationController(rootViewController: feedVC)
         let profileNavigationVC: UINavigationController = {

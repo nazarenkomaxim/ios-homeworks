@@ -62,7 +62,6 @@ class PhotosTableViewCell: UITableViewCell {
         return view
     }()
     
-    
     private let imageArrowRight: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "arrow.right")
@@ -91,55 +90,6 @@ class PhotosTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    //    override init(frame: CGRect) {
-    //        super.init(frame: frame)
-    //        customizeCell()
-    //        layout()
-    //        setupCell(image: arrayPhoto)
-    //
-    //    }
-    
-    
-    //    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    //        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    //        layout()
-    //        customizeCell()
-    //    }
-    
-    
-    
-    //    var arrayPhoto: [UIImage] {
-    //        var array = [UIImage]()
-    //        for i in 1...20 {
-    //            array.append(UIImage(named: "\(i)")!)
-    //        }
-    //        return array
-    //    }
-    
-    
-    // Метод для настройки ячеек
-    //    func setupCell(image: [UIImage]) {
-    //        var arrayPhoto: [UIImage] {
-    //            var array = [UIImage]()
-    //            for i in 1...4 {
-    //                array.append(UIImage(named: "\(i)")!)
-    //            }
-    //            return array
-    //        }
-    //        imageViewPhotos.image: [UIImage] {
-    //            var image = [UIImage]()
-    //            for element in 1...20 {
-    //                UIImage(named: "\(element)")
-    //                image.append(element)
-    //            }
-    //            return image
-    //        }
-    
-    //        imageView?.image = (UIImage(named: "1")!)
-    //    }
-    
-    
     private func layout() {
         contentView.addSubviews(whiteView)
         
@@ -157,7 +107,6 @@ class PhotosTableViewCell: UITableViewCell {
             imageLabel.topAnchor.constraint(equalTo: whiteView.topAnchor, constant: 12),
             imageLabel.leadingAnchor.constraint(equalTo: whiteView.leadingAnchor, constant: 12),
             imageLabel.heightAnchor.constraint(equalToConstant: 20),
-//            imageLabel.bottomAnchor.constraint(equalTo: whiteView.trailingAnchor, constant: -12),
             
             // imageArrowRight
             imageArrowRight.topAnchor.constraint(equalTo: whiteView.topAnchor, constant: 12),
@@ -191,11 +140,7 @@ class PhotosTableViewCell: UITableViewCell {
             fourthImageViewPhotos.widthAnchor.constraint(equalToConstant: 86),
             
         ])
-        
     }
-    
-    
-    
     
 }
 
