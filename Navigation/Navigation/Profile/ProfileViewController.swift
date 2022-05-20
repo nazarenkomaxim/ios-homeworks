@@ -102,3 +102,12 @@ extension ProfileViewController: UITableViewDelegate {
         }
     }
 }
+
+// MARK: - PhotosTableViewCell
+
+//extension ProfileViewController: PhotosTableViewCell {
+//
+//    func didSelect() {
+//
+//    }
+//}
