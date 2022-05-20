@@ -189,8 +189,6 @@ class PhotosTableViewCell: UITableViewCell {
             fourthImageViewPhotos.trailingAnchor.constraint(equalTo: whiteView.trailingAnchor, constant: -8),
             fourthImageViewPhotos.widthAnchor.constraint(equalToConstant: 86),
             
-            
-            
         ])
         
     }
