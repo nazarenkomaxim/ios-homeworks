@@ -151,6 +151,7 @@ class PhotosTableViewCell: UITableViewCell {
             whiteView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             whiteView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             whiteView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            whiteView.heightAnchor.constraint(equalToConstant: 140),
             
             // imageLabel
             imageLabel.topAnchor.constraint(equalTo: whiteView.topAnchor, constant: 12),
