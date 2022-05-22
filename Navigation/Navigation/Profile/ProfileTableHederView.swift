@@ -26,6 +26,8 @@ class ProfileHeaderView: UIView {
         button.setBackgroundImage(image, for: .normal)
         button.alpha = 0
         button.addTarget(self, action: #selector(closeAction), for: .touchUpInside)
+        //        button.addTarget(self, action: #selector(closeAvatar), for: .touchUpInside)
+        
         return button
     }()
     
@@ -140,13 +142,14 @@ class ProfileHeaderView: UIView {
             let superView = (self.superview?.safeAreaLayoutGuide.layoutFrame)!
             
             self.widthProfileView.constant = superView.width
+            self.heightProfileView.constant = superView.width
             self.centerXProfileView.constant = superView.width / 2
             self.centerYProfileView.constant = superView.height / 2
             
             NSLayoutConstraint.activate([
                 self.heightProfileView, self.widthProfileView, self.centerXProfileView, self.centerYProfileView
-        ])
-        
+            ])
+            
             self.layoutIfNeeded()
             
         } completion: { _ in
@@ -159,36 +162,65 @@ class ProfileHeaderView: UIView {
     }
     
     @objc private func closeAction() {
-        
-        UIView.animate(withDuration: 0.5) {
-            self.transparentView.alpha = 0
-            self.closeButton.alpha = 0
-            self.profilePhotoView.layer.borderWidth = 3
-            self.profilePhotoView.layer.cornerRadius = 80
-
-        
-        NSLayoutConstraint.deactivate([
-            self.heightProfileView, self.widthProfileView, self.centerXProfileView, self.centerYProfileView
-        ])
-        
-            self.widthProfileView = self.profilePhotoView.widthAnchor.constraint(equalToConstant: 160)
-            self.heightProfileView = self.profilePhotoView.heightAnchor.constraint(equalToConstant: 160)
-
+        UIView.animate(withDuration: 0.5, animations: {
+            
+            NSLayoutConstraint.deactivate([
+                self.centerXProfileView, self.centerYProfileView, self.heightProfileView, self.widthProfileView
+            ])
+            
             self.centerXProfileView = self.profilePhotoView.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 90)
             self.centerYProfileView = self.profilePhotoView.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 100)
-
+            self.widthProfileView = self.profilePhotoView.widthAnchor.constraint(equalToConstant: 160)
+            
+            self.heightProfileView = self.profilePhotoView.heightAnchor.constraint(equalToConstant: 160)
+            
+            NSLayoutConstraint.activate([
+                self.heightProfileView, self.widthProfileView, self.centerXProfileView, self.centerYProfileView
+            ])
+            
+            self.profilePhotoView.layer.borderWidth = 3
+            self.profilePhotoView.layer.cornerRadius = 80
+            self.transparentView.alpha = 0
+            self.closeButton.alpha = 0
             self.layoutIfNeeded()
-        
-        NSLayoutConstraint.activate([
-            self.heightProfileView, self.widthProfileView, self.centerXProfileView, self.centerYProfileView
-        ])
-        
             
-            
-        }
+        })
         
     }
     
+    
+//    @objc private func closeAvatar() {
+//        UIView.animate(withDuration: 0.5, animations: {
+//            NSLayoutConstraint.deactivate([
+//                self.centerXProfileView,
+//                self.centerYProfileView,
+//                self.heightProfileView,
+//                self.widthProfileView
+//            ].compactMap( {$0} ))
+//
+//            self.centerXProfileView = self.profilePhotoView.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 66)
+//            self.centerYProfileView = self.profilePhotoView.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 66)
+//            self.widthProfileView = self.profilePhotoView.widthAnchor.constraint(equalToConstant: 100)
+//            self.heightProfileView = self.profilePhotoView.heightAnchor.constraint(equalToConstant: 100)
+//
+//            NSLayoutConstraint.activate([
+//                self.centerXProfileView,
+//                self.centerYProfileView,
+//                self.heightProfileView,
+//                self.widthProfileView
+//            ].compactMap( {$0} ))
+//
+//            self.profilePhotoView.layer.cornerRadius = 50
+//            self.closeButton.alpha = 0
+//            self.transparentView.alpha = 0
+//            self.layoutIfNeeded()
+//        }) { _ in
+//            UIView.animate(withDuration: 1) {
+//                self.transparentView.isHidden = true
+//                self.closeButton.isHidden = true
+//            }
+//        }
+//    }
     
     
     func setupViews() {
