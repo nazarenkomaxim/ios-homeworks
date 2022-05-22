@@ -80,9 +80,8 @@ class PostTableViewCell: UITableViewCell {
         descriptionLabel.text = post.description
         likesLabel.text = likesLabel.text! + String(post.likes)
         viewsLabel.text = viewsLabel.text! + String(post.views)
-
+        
     }
-    
     
     private func layout() {
         // В UITableViewCell вместо view указываем contentView
@@ -99,7 +98,7 @@ class PostTableViewCell: UITableViewCell {
             headingLabel.topAnchor.constraint(equalTo: whiteView.topAnchor, constant: 8),
             headingLabel.leadingAnchor.constraint(equalTo: whiteView.leadingAnchor, constant: 8),
             headingLabel.trailingAnchor.constraint(equalTo: whiteView.trailingAnchor, constant: -8),
-                        
+            
             // Картинка
             newsImageView.topAnchor.constraint(equalTo: headingLabel.bottomAnchor, constant: 8),
             newsImageView.leadingAnchor.constraint(equalTo: whiteView.leadingAnchor, constant: 8),
@@ -122,11 +121,9 @@ class PostTableViewCell: UITableViewCell {
             viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 8),
             viewsLabel.trailingAnchor.constraint(equalTo: whiteView.trailingAnchor, constant: -8),
             viewsLabel.bottomAnchor.constraint(equalTo: whiteView.bottomAnchor, constant: -8),
-                        
+            
         ])
         
     }
-    
-    
     
 }

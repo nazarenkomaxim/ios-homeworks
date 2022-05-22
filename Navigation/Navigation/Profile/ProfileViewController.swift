@@ -11,6 +11,8 @@ class ProfileViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
+        tableView.sectionFooterHeight = 4
         return tableView
     }()
     
@@ -20,18 +22,24 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
-        
         self.title = "Мой профиль"
-        constraintHeaderView()
         view.backgroundColor = .white
+        layout()
         
     }
     
-    private func constraintHeaderView() {
-        view.addSubview(tableView)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
+    private func layout() {
+        view.addSubviews(tableView)
         
         NSLayoutConstraint.activate([
-            // profileHeaderView
+            
+            // tableViewPost
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -43,19 +51,37 @@ class ProfileViewController: UIViewController {
 
 
 // MARK: - UITableViewDataSource
+
 // Данный протокол отвечает за наполнение нашей таблицы, у него есть два обязательных метода. Их принято называть numberOfRowsInSection и cellForRowAt
 extension ProfileViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     // numberOfRowsInSection - отвечает за количество ячеек в секции
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Обращаемся к нашему массиву и говорим, что количество ячеек = count массива
-        //        return carModel.count
-        return news.count
+        
+        if section == 0 {
+            return 1
+        } else {
+            return news.count
+        }
     }
+    
     // cellForRowAt - просит вернуть от нас экземпляр ячейки
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
-        cell.setupCell(news[indexPath.row])
-        return cell
+        
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as! PhotosTableViewCell
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+            cell.setupCell(news[indexPath.row])
+            
+            return cell
+        }
     }
 }
 
@@ -66,19 +92,29 @@ extension ProfileViewController: UITableViewDelegate {
     // Метод отвечает за высоту ячейку
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // Если поставить цифру, то можно задать дефолтную высоту, допустим 100 или 200, но если надо чтобы таблица была динамической, то надо писать: (чтобы работало - элементы должны быть привязаны как к низу, так и к верху ячейки)
-        UITableView.automaticDimension
+        if indexPath.section == 0 {
+            return 140
+        } else {
+            return UITableView.automaticDimension
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = ProfileHeaderView()
-        header.setupViews()
-        
-        
-        return header
+        if section == 0 {
+            let header = ProfileHeaderView()
+            header.setupViews()
+            return header
+        } else {
+            return nil
+        }
     }
     
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        section == 0 ? 220 : 0
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let photosVC = PhotosViewController()
+            navigationController?.pushViewController(photosVC, animated: true)
+        }
+        
+    }
     
 }

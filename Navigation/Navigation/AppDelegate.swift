@@ -28,10 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         feedVC.tabBarItem.title = "Лента"
         feedVC.tabBarItem.image = UIImage(systemName: "house.fill")
-
-//        let profileVC = ProfileViewController()
-//        profileVC.tabBarItem.title = "Профиль"
-//        profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
         
         let loginVC: LogInViewController = {
             let loginVC = LogInViewController()
@@ -39,7 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             loginVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
             return loginVC
         }()
-        
         
         // Делаем экземпляр класса контроллера навигации
         let feedNavigationVC = UINavigationController(rootViewController: feedVC)
