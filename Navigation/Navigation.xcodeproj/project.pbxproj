@@ -76,6 +76,16 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		EE8DCCE1283915B50058AFF6 /* First screen */ = {
+			isa = PBXGroup;
+			children = (
+				EEA4651828245DF50023DE0A /* FeedViewController.swift */,
+				EEA4651C28246AAF0023DE0A /* PostViewController.swift */,
+				EE64E4E12825B2F100C5D960 /* InfoViewController.swift */,
+			);
+			path = "First screen";
+			sourceTree = "<group>";
+		};
 		EEA464F6282456570023DE0A = {
 			isa = PBXGroup;
 			children = (
@@ -97,9 +107,7 @@
 			children = (
 				EE64E50728284E2100C5D960 /* Profile */,
 				EEA46502282456570023DE0A /* AppDelegate.swift */,
-				EEA4651828245DF50023DE0A /* FeedViewController.swift */,
-				EEA4651C28246AAF0023DE0A /* PostViewController.swift */,
-				EE64E4E12825B2F100C5D960 /* InfoViewController.swift */,
+				EE8DCCE1283915B50058AFF6 /* First screen */,
 				EEA46504282456570023DE0A /* SceneDelegate.swift */,
 				EEA4651628245D1A0023DE0A /* NavigationTabBarController.swift */,
 				EEB0A4E0282BD73D006D64B9 /* ExtensionUIView.swift */,

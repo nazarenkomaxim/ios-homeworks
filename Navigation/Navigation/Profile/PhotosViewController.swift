@@ -22,7 +22,7 @@ class PhotosViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.toAutoLayout()
-        collection.backgroundColor = .systemBlue
+        collection.backgroundColor = .white
         collection.dataSource = self
         collection.delegate = self
         collection.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.identifier)
@@ -32,7 +32,7 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
-        view.backgroundColor = .systemCyan
+        view.backgroundColor = .white
         layout()
     }
     

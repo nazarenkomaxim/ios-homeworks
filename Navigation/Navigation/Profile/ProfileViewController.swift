@@ -25,6 +25,7 @@ class ProfileViewController: UIViewController {
         self.title = "Мой профиль"
         view.backgroundColor = .white
         layout()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,7 +33,7 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.prefersLargeTitles = false
     }
-
+    
     private func layout() {
         view.addSubviews(tableView)
         

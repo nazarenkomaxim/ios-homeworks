@@ -10,12 +10,24 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-    let whiteView: UIView = {
+    var transparentView: UIView = {
         let view = UIView()
         view.toAutoLayout()
+        view.alpha = 0
         view.clipsToBounds = true
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         return view
+    }()
+    
+    lazy var closeButton: UIButton = {
+        let button = UIButton()
+        button.toAutoLayout()
+        let image = UIImage(systemName: "xmark")
+        button.setBackgroundImage(image, for: .normal)
+        button.alpha = 0
+//        button.isHidden = true
+        button.addTarget(self, action: #selector(closeAction), for: .touchUpInside)
+        return button
     }()
 
     var profilePhotoView: UIImageView = {
@@ -30,6 +42,8 @@ class ProfileHeaderView: UIView {
         profilePhoto.layer.cornerRadius = 80
         // Обрезать фото по радиусу
         profilePhoto.layer.masksToBounds = true
+        profilePhoto.isUserInteractionEnabled = true
+        
         return profilePhoto
     }()
     
@@ -75,6 +89,11 @@ class ProfileHeaderView: UIView {
         button.layer.cornerRadius = 4
         return button
     }()
+    
+    private var topProfileView = NSLayoutConstraint()
+    private var leadingProfileView = NSLayoutConstraint()
+    private var widthProfileView = NSLayoutConstraint()
+    private var heightProfileView = NSLayoutConstraint()
 
     // Инициализируем добавленные компоненты
     override init(frame: CGRect) {
@@ -84,6 +103,7 @@ class ProfileHeaderView: UIView {
         addSubview(userStatusLabel)
         addSubview(userTextField)
         addSubview(userStatusButton)
+        setupGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -91,22 +111,132 @@ class ProfileHeaderView: UIView {
     }
     
     @objc private func tapAction() {
-        // Измените функцию buttonPressed() так, чтобы при нажатии на кнопку введенный текст устанавливался в качестве статуса
         userStatusLabel.text = userTextField.text
     }
+    
+    @objc private func closeAction() {
+        NSLayoutConstraint.deactivate([
+                        self.heightProfileView, self.widthProfileView
+                    ])
+
+        
+        self.topProfileView = self.profilePhotoView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16)
+        self.leadingProfileView = self.profilePhotoView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16)
+        self.widthProfileView = self.profilePhotoView.widthAnchor.constraint(equalToConstant: 160)
+        self.heightProfileView = self.profilePhotoView.heightAnchor.constraint(equalToConstant: 160)
+        self.layoutIfNeeded()
+        
+
+        
+        UIView.animate(withDuration: 0.5) {
+            self.transparentView.alpha = 0
+            self.closeButton.alpha = 0
+            self.profilePhotoView.layer.borderWidth = 3
+            self.profilePhotoView.layer.cornerRadius = 80
+            
+            
+
+           
+
+
+        }
+        
+    }
+
+    
+    private func setupGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapPhotoAction))
+        profilePhotoView.addGestureRecognizer(tapGesture)
+    }
+    
+    
+    @objc private func tapPhotoAction() {
+        self.heightProfileView.constant = UIScreen.main.bounds.height - 200
+        self.widthProfileView.constant = UIScreen.main.bounds.width
+//        self.profilePhotoView.center.x = UIScreen.main.bounds.width / 2
+//        self.profilePhotoView.center.y = UIScreen.main.bounds.height / 2
+//        NSLayoutConstraint.deactivate([
+//            self.topProfileView, self.leadingProfileView
+//        ])
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 1,
+                       options: .curveEaseInOut) {
+//            self.heightProfileView.constant = UIScreen.main.bounds.height
+            
+//            self.widthProfileView.constant = UIScreen.main.bounds.width
+            
+
+            self.profilePhotoView.layer.borderWidth = 0
+            self.profilePhotoView.layer.cornerRadius = 0
+            self.transparentView.alpha = 0.9
+            
+            self.layoutIfNeeded()
+        } completion: { _ in
+            UIView.animate(withDuration: 0.3) {
+                self.closeButton.alpha = 1.0
+                
+            }
+        }
+
+        
+//        UIView.animate(withDuration: 3.0) {
+//
+//            self.leadingProfileView.constant = UIScreen.main.bounds.width - self.widthProfileView.constant
+//            self.layoutIfNeeded()
+//        } completion: { _ in
+//
+//        }
+
+        print("Tap")
+//        let rotateAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.transform))
+//        rotateAnimation.valueFunction = CAValueFunction(name: CAValueFunctionName.rotateZ)
+//        rotateAnimation.fromValue = 0
+//        rotateAnimation.toValue = 1.75 * Float.pi
+//        
+//        let positionAnimated = CABasicAnimation(keyPath: #keyPath(CALayer.position))
+//        positionAnimated.fromValue = profilePhotoView.center
+//        positionAnimated.toValue = CGPoint(x: UIScreen.main.bounds.width - 100, y: profilePhotoView.center.y)
+//        
+//        let groupAnimation = CAAnimationGroup()
+//        groupAnimation.duration = 2.0
+//        groupAnimation.animations = [rotateAnimation, positionAnimated]
+//        groupAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+//        profilePhotoView.layer.add(groupAnimation, forKey: nil)
+        
+    }
+
+    
+    
     
     func setupViews() {
         
 //         Для того, чтобы не добавлять много элементов в addSubview, можно создать замыкание:
-        [profilePhotoView, profileNameLabel, userStatusButton, userStatusLabel, userTextField].forEach { self.addSubview($0) }
+        [profileNameLabel, userStatusButton, userStatusLabel, userTextField,transparentView, profilePhotoView,  closeButton].forEach { self.addSubview($0) }
                 
+        topProfileView = profilePhotoView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16)
+        leadingProfileView = profilePhotoView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16)
+        widthProfileView = profilePhotoView.widthAnchor.constraint(equalToConstant: 160)
+        heightProfileView = profilePhotoView.heightAnchor.constraint(equalToConstant: 160)
+        
         NSLayoutConstraint.activate([
 //             Фото профиля
-            profilePhotoView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            profilePhotoView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            profilePhotoView.widthAnchor.constraint(equalToConstant: 160),
-            profilePhotoView.heightAnchor.constraint(equalToConstant: 160),
+            topProfileView, leadingProfileView, widthProfileView, heightProfileView,
+            
+            // Прозрачный фон
+            transparentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+            transparentView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height),
+            transparentView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            transparentView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            transparentView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+//            transparentView.bottomAnchor.constraint(equalTo: UIView.bottomAnchor),
 
+            
+            // close button
+            closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            closeButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -40),
         
 //         Имя профиля
             profileNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
