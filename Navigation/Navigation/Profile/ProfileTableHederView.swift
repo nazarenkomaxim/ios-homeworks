@@ -116,15 +116,18 @@ class ProfileHeaderView: UIView {
     
     @objc private func closeAction() {
         NSLayoutConstraint.deactivate([
-                        self.heightProfileView, self.widthProfileView
+            self.heightProfileView, self.widthProfileView, self.topProfileView, self.leadingProfileView
                     ])
 
-        
         self.topProfileView = self.profilePhotoView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16)
         self.leadingProfileView = self.profilePhotoView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16)
         self.widthProfileView = self.profilePhotoView.widthAnchor.constraint(equalToConstant: 160)
         self.heightProfileView = self.profilePhotoView.heightAnchor.constraint(equalToConstant: 160)
         self.layoutIfNeeded()
+        
+        NSLayoutConstraint.activate([
+            self.heightProfileView, self.widthProfileView, self.topProfileView, self.leadingProfileView
+        ])
         
 
         
@@ -151,13 +154,23 @@ class ProfileHeaderView: UIView {
     
     
     @objc private func tapPhotoAction() {
-        self.heightProfileView.constant = UIScreen.main.bounds.height - 200
+        NSLayoutConstraint.deactivate([
+            self.heightProfileView, self.widthProfileView, self.topProfileView, self.leadingProfileView
+                    ])
+
+//        self.heightProfileView.constant = UIScreen.main.bounds.height
         self.widthProfileView.constant = UIScreen.main.bounds.width
-//        self.profilePhotoView.center.x = UIScreen.main.bounds.width / 2
-//        self.profilePhotoView.center.y = UIScreen.main.bounds.height / 2
+        self.profilePhotoView.center.x = UIScreen.main.bounds.width / 2
+        self.profilePhotoView.center.y = UIScreen.main.bounds.height / 2
 //        NSLayoutConstraint.deactivate([
 //            self.topProfileView, self.leadingProfileView
 //        ])
+        
+        NSLayoutConstraint.activate([
+            self.heightProfileView, self.widthProfileView, self.topProfileView, self.leadingProfileView
+                    ])
+
+
         
         UIView.animate(withDuration: 0.5,
                        delay: 0,
