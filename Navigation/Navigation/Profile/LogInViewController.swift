@@ -13,6 +13,10 @@ class LogInViewController: UIViewController {
     // Создаем экземпляр стандартного класса Notification Center (ловит изменения и сообщает их своим подписчикам)
     let notificationCenter = NotificationCenter.default
     
+    
+    let minLength = 8
+    private lazy var regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&#])[A-Za-z\\d$@$!%*?&#]{\(minLength),}$"
+    
     // Создаем scrollView, для её работы требуется ещё одна view
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -52,6 +56,7 @@ class LogInViewController: UIViewController {
         // Кнопка очистить при редактировании
         text.clearButtonMode = .whileEditing
         text.textColor = .black
+        text.textContentType = .emailAddress
         text.autocapitalizationType = .none
         // Делегат нужен для подъема экрана во время появления клавиаутыры
         text.delegate = self
@@ -76,6 +81,7 @@ class LogInViewController: UIViewController {
         text.textColor = .black
         text.isSecureTextEntry = true
         text.autocapitalizationType = .none
+        text.textContentType = .password
         // Делегат нужен для подъема экрана во время появления клавиаутыры
         text.delegate = self
         return text
@@ -109,6 +115,31 @@ class LogInViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
         setupView()
+        textFieldCheck(loginTextField)
+        
+    }
+    
+        /*
+         
+         Реализовать проверку на пустые поля логина и пароля. Если одно из полей пустое, то при нажатии на кнопку к этому полю должно применяться действие. Например: изменение цвета фона, рамки или подергивание.
+         Реализовать проверку на количество введенных символов пароля. Если меньше определенного количество, то под полем с паролеме должен появиться UILabel с предупреждением.
+         Установить стандартный логин и пароль. В случае ввода некорректных данных выбрасывать UIAlertController с предупреждением.
+
+         */
+    
+    private func textFieldCheck(_ sender: UITextField) {
+        
+        if let text = sender.text {
+            let textLength = text.count
+            switch textLength {
+            case 0:
+                print("Поле не должно быть пустым")
+                sender.layer.borderColor = UIColor.systemRed.cgColor
+                
+            default:
+                print("")
+            }
+        }
         
     }
     
@@ -199,11 +230,21 @@ class LogInViewController: UIViewController {
 // MARK: - UITextFieldDelegate
 
 extension LogInViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let text = (textField.text ?? "") + string
+        return false
+    }
+    
+    
     // Метод убирает клавиатуру, когда нажимаем на клавишу return на клавиатуре
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true
     }
 }
+
+
+
 
 
