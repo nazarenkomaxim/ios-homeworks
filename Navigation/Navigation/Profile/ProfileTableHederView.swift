@@ -26,8 +26,6 @@ class ProfileHeaderView: UIView {
         button.setBackgroundImage(image, for: .normal)
         button.alpha = 0
         button.addTarget(self, action: #selector(closeAction), for: .touchUpInside)
-        //        button.addTarget(self, action: #selector(closeAvatar), for: .touchUpInside)
-        
         return button
     }()
     
@@ -44,7 +42,6 @@ class ProfileHeaderView: UIView {
         // Обрезать фото по радиусу
         profilePhoto.layer.masksToBounds = true
         profilePhoto.isUserInteractionEnabled = true
-        
         return profilePhoto
     }()
     
@@ -90,10 +87,9 @@ class ProfileHeaderView: UIView {
         button.layer.cornerRadius = 4
         return button
     }()
-        
+    
     private var centerXProfileView = NSLayoutConstraint()
     private var centerYProfileView = NSLayoutConstraint()
-    
     private var widthProfileView = NSLayoutConstraint()
     private var heightProfileView = NSLayoutConstraint()
     
@@ -116,13 +112,10 @@ class ProfileHeaderView: UIView {
         userStatusLabel.text = userTextField.text
     }
     
-    
-    
     private func setupGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapPhotoAction))
         profilePhotoView.addGestureRecognizer(tapGesture)
     }
-    
     
     @objc private func tapPhotoAction() {
         
@@ -152,13 +145,13 @@ class ProfileHeaderView: UIView {
         } completion: { _ in
             UIView.animate(withDuration: 0.3) {
                 self.closeButton.alpha = 1.0
-                
             }
         }
         
     }
     
     @objc private func closeAction() {
+        
         UIView.animate(withDuration: 0.5, animations: {
             
             NSLayoutConstraint.deactivate([
@@ -182,14 +175,12 @@ class ProfileHeaderView: UIView {
             self.layoutIfNeeded()
             
         })
-        
     }
     
     func setupViews() {
         
         // Для того, чтобы не добавлять много элементов в addSubview, можно создать замыкание:
         [profileNameLabel, userStatusButton, userStatusLabel, userTextField,transparentView, profilePhotoView,  closeButton].forEach { self.addSubview($0) }
-        
         
         centerXProfileView = profilePhotoView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 90)
         centerYProfileView = profilePhotoView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 100)
@@ -229,7 +220,7 @@ class ProfileHeaderView: UIView {
             userStatusLabel.leadingAnchor.constraint(equalTo: profilePhotoView.trailingAnchor, constant: 30),
             
             // Поле для статуса
-            userTextField.topAnchor.constraint(equalTo: userStatusLabel.bottomAnchor, constant: 20),
+            userTextField.topAnchor.constraint(equalTo: userStatusLabel.bottomAnchor, constant: 30),
             userTextField.leadingAnchor.constraint(equalTo: profilePhotoView.trailingAnchor, constant: 30),
             userTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             userStatusButton.heightAnchor.constraint(equalToConstant: 40)
