@@ -90,10 +90,7 @@ class ProfileHeaderView: UIView {
         button.layer.cornerRadius = 4
         return button
     }()
-    
-    //    private var topProfileView = NSLayoutConstraint()
-    //    private var leadingProfileView = NSLayoutConstraint()
-    
+        
     private var centerXProfileView = NSLayoutConstraint()
     private var centerYProfileView = NSLayoutConstraint()
     
@@ -187,41 +184,6 @@ class ProfileHeaderView: UIView {
         })
         
     }
-    
-    
-//    @objc private func closeAvatar() {
-//        UIView.animate(withDuration: 0.5, animations: {
-//            NSLayoutConstraint.deactivate([
-//                self.centerXProfileView,
-//                self.centerYProfileView,
-//                self.heightProfileView,
-//                self.widthProfileView
-//            ].compactMap( {$0} ))
-//
-//            self.centerXProfileView = self.profilePhotoView.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 66)
-//            self.centerYProfileView = self.profilePhotoView.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 66)
-//            self.widthProfileView = self.profilePhotoView.widthAnchor.constraint(equalToConstant: 100)
-//            self.heightProfileView = self.profilePhotoView.heightAnchor.constraint(equalToConstant: 100)
-//
-//            NSLayoutConstraint.activate([
-//                self.centerXProfileView,
-//                self.centerYProfileView,
-//                self.heightProfileView,
-//                self.widthProfileView
-//            ].compactMap( {$0} ))
-//
-//            self.profilePhotoView.layer.cornerRadius = 50
-//            self.closeButton.alpha = 0
-//            self.transparentView.alpha = 0
-//            self.layoutIfNeeded()
-//        }) { _ in
-//            UIView.animate(withDuration: 1) {
-//                self.transparentView.isHidden = true
-//                self.closeButton.isHidden = true
-//            }
-//        }
-//    }
-    
     
     func setupViews() {
         
