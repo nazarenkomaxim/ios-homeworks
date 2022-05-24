@@ -13,9 +13,44 @@ class LogInViewController: UIViewController {
     // Создаем экземпляр стандартного класса Notification Center (ловит изменения и сообщает их своим подписчикам)
     let notificationCenter = NotificationCenter.default
     
+    enum LoginUser {
+        static let login = "nm@mail.ru"
+        static let password = "qwerty"
+    }
     
-    let minLength = 8
-    private lazy var regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&#])[A-Za-z\\d$@$!%*?&#]{\(minLength),}$"
+    let alertAction: UIAlertController = {
+        let alert = UIAlertController()
+        let okAlert = UIAlertAction(title: "Ок", style: .cancel)
+        alert.title = "Важное сообщение"
+        alert.message = "Логин или пароль введены не правильно"
+        alert.addAction(okAlert)
+        return alert
+    }()
+    
+//    let alertAction = UIAlertController(title: "Важное сообщение", message: "Логин или пароль введены не правильно", preferredStyle: .alert)
+//    let okAlertAction = UIAlertAction(title: "Выйти", style: .default) { _ in
+//        self.navigationController?.popViewController(animated: true)
+//        print("Выходим")
+//    }
+//    let cancelAlertAction = UIAlertAction(title: "Отмена", style: .destructive) {_ in
+//        print("Отмена, не выходим")
+//    }
+
+//    alertAction.addAction(cancelAlertAction)
+//    alertAction.addAction(okAlertAction)
+//    present(alertAction, animated: true)
+    
+    private lazy var warningLabel: UILabel = {
+        let label = UILabel()
+        label.toAutoLayout()
+        label.textColor = .systemRed
+        label.alpha = 0
+        label.font = UIFont.systemFont(ofSize: 12)
+        return label
+    }()
+    
+    // Минимальное количество символов для пароля
+    let minLength = 6
     
     // Создаем scrollView, для её работы требуется ещё одна view
     private let scrollView: UIScrollView = {
@@ -50,7 +85,7 @@ class LogInViewController: UIViewController {
         text.layer.borderColor = UIColor.lightGray.cgColor
         text.layer.cornerRadius = 10
         text.layer.borderWidth = 0.5
-        text.placeholder = " Введите почту или номер телефона"
+        text.placeholder = " Введите вашу почту"
         // Выравнивание по левому краю
         text.textAlignment = .left
         // Кнопка очистить при редактировании
@@ -59,7 +94,7 @@ class LogInViewController: UIViewController {
         text.textContentType = .emailAddress
         text.autocapitalizationType = .none
         // Делегат нужен для подъема экрана во время появления клавиаутыры
-        text.delegate = self
+//        text.delegate = self
         return text
     }()
 
@@ -73,7 +108,7 @@ class LogInViewController: UIViewController {
         text.layer.borderColor = UIColor.lightGray.cgColor
         text.layer.cornerRadius = 10
         text.layer.borderWidth = 0.5
-        text.placeholder = " Ваш пароль"
+        text.placeholder = " Введите ваш пароль"
         // Выравнивание по левому краю
         text.textAlignment = .left
         // Кнопка очистить при редактировании
@@ -83,7 +118,7 @@ class LogInViewController: UIViewController {
         text.autocapitalizationType = .none
         text.textContentType = .password
         // Делегат нужен для подъема экрана во время появления клавиаутыры
-        text.delegate = self
+//        text.delegate = self
         return text
     }()
 
@@ -105,17 +140,91 @@ class LogInViewController: UIViewController {
     }()
 
     @objc func moveToProfile() {
+        
         let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
-    
+        
+        var loginError = false
+        var passwordError = false
+        
+        let login = loginTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        warningLabel.text = ""
+        
+        if login.isEmpty {
+            loginError = true
+            warningLabel.alpha = 1
+            loginTextField.layer.borderColor = UIColor.systemRed.cgColor
+            warningLabel.text = "Укажите пожалуйста почту"
+        } else {
+            loginError = false
+            loginTextField.layer.borderColor = UIColor.lightGray.cgColor
+        }
+        
+        if password.isEmpty {
+            passwordError = true
+            warningLabel.alpha = 1
+            passwordTextField.layer.borderColor = UIColor.systemRed.cgColor
+            warningLabel.text = "Введите пожалуйста пароль"
+        } else if password.count < minLength {
+            passwordError = true
+            warningLabel.alpha = 1
+            passwordTextField.layer.borderColor = UIColor.systemRed.cgColor
+            warningLabel.text = "Пароль должен содержать минимум \(minLength) символов"
+        } else {
+            passwordError = false
+            loginTextField.layer.borderColor = UIColor.lightGray.cgColor
+
+        }
+        
+//        if password.count < minLength {
+//            passwordError = true
+//            warningLabel.alpha = 1
+//            passwordTextField.layer.borderColor = UIColor.systemRed.cgColor
+//            warningLabel.text = "Пароль должен содержать минимум \(minLength) символов"
+//        } else {
+//            passwordError = false
+//            loginTextField.layer.borderColor = UIColor.lightGray.cgColor
+//
+//        }
+        
+        if passwordError && loginError {
+            warningLabel.alpha = 1
+            warningLabel.text = "Почта и пароль введены некорректно"
+        }
+        
+        if !loginError && !passwordError {
+            if loginTextField.text == LoginUser.login && passwordTextField.text == LoginUser.password{
+            navigationController?.pushViewController(profileVC, animated: true)
+            } else {
+                alertAction
+                
+            }
+        }
+        
+//        if !passwordError {
+//            passwordTextField.layer.borderColor = UIColor.lightGray.cgColor
+//        }
+//        if !loginError {
+//            loginTextField.layer.borderColor = UIColor.lightGray.cgColor
+//        }
+//
+//        if !loginError && !passwordError {
+//            navigationController?.pushViewController(profileVC, animated: true)
+//        }
+        
     }
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
         setupView()
-        textFieldCheck(loginTextField)
+//        textFieldCheck(loginTextField)
+//        passwordTextField.smartInsertDeleteType = UITextSmartInsertDeleteType.no
+//        passwordTextField.delegate = self
+//        isPasswordCorrect(passwordTextField)
+        
         
     }
     
@@ -126,6 +235,39 @@ class LogInViewController: UIViewController {
          Установить стандартный логин и пароль. В случае ввода некорректных данных выбрасывать UIAlertController с предупреждением.
 
          */
+    
+    func isPasswordCorrect(_ sender: UITextField) {
+        if let text = sender.text {
+            let textLength = text.count
+            if  textLength < 7 {
+                //Do something
+                passwordTextField.layer.borderColor = UIColor.systemRed.cgColor
+                
+                print("\(text), length: \(textLength)")
+            }
+        }
+    }
+
+    
+//    func checkMaxLength(textField: UITextField!) {
+//        let minLength = 7
+//        if (countElements(textField.text!) > minLength) {
+//            textField.deleteBackward()
+//        }
+//    }
+    
+//    func isPasswordCorrect(_ sender: UITextField) -> Bool {
+//            // code for check length, number exist, uppercase and lowercase chars
+//        let passwordCount = sender.text?.count
+//        if passwordCount < 7 {
+//            print("Пароль должен содержать минимум 8 символов")
+//        } else {
+//            print("Проверка")
+//        }
+//
+//        value.text?.count >
+//
+//        }
     
     private func textFieldCheck(_ sender: UITextField) {
         
@@ -179,7 +321,7 @@ class LogInViewController: UIViewController {
         
         scrollView.addSubview(loginView)
         
-        [logoView, loginTextField, passwordTextField, loginBlueButton].forEach { loginView.addSubview($0) }
+        [logoView, loginTextField, passwordTextField, loginBlueButton, warningLabel].forEach { loginView.addSubview($0) }
         
         NSLayoutConstraint.activate([
             // scrollView
@@ -188,6 +330,14 @@ class LogInViewController: UIViewController {
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         
+            // warningLabel
+            warningLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8),
+            warningLabel.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor),
+//            warningLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+//            warningLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+//            warningLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+
+            
             // LogInVeiw
             loginView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             loginView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -214,7 +364,7 @@ class LogInViewController: UIViewController {
             passwordTextField.trailingAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
 
             // loginBlueButton
-            loginBlueButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
+            loginBlueButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 28),
             loginBlueButton.leadingAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             loginBlueButton.heightAnchor.constraint(equalToConstant: 50),
             loginBlueButton.trailingAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
@@ -232,8 +382,14 @@ class LogInViewController: UIViewController {
 extension LogInViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let text = (textField.text ?? "") + string
-        return false
+        
+        guard let textFieldText = textField.text,
+              let rangeOfTextToReplace = Range(range, in: textFieldText) else {
+            return false
+        }
+        let substringToReplace = textFieldText[rangeOfTextToReplace]
+        let count = textFieldText.count - substringToReplace.count + string.count
+        return count <= 10
     }
     
     

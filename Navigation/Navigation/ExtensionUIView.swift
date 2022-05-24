@@ -23,9 +23,3 @@ public extension UIView {
         subviews.forEach { addSubview($0) }
     }
 }
-
-public extension String {
-    func matches(_ regex: String) -> Bool {
-        return
-    }
-}
