@@ -22,7 +22,7 @@ class LogInViewController: UIViewController {
         let alert = UIAlertController()
         let okAlert = UIAlertAction(title: "Ок", style: .cancel)
         alert.title = "Важное сообщение"
-        alert.message = "Логин или пароль введены не правильно"
+        alert.message = "Логин или пароль введены не правильно. Подсказка: nm@mail.ru / qwerty"
         alert.addAction(okAlert)
         return alert
     }()
@@ -173,19 +173,8 @@ class LogInViewController: UIViewController {
         } else {
             passwordError = false
             loginTextField.layer.borderColor = UIColor.lightGray.cgColor
-
+            
         }
-        
-//        if password.count < minLength {
-//            passwordError = true
-//            warningLabel.alpha = 1
-//            passwordTextField.layer.borderColor = UIColor.systemRed.cgColor
-//            warningLabel.text = "Пароль должен содержать минимум \(minLength) символов"
-//        } else {
-//            passwordError = false
-//            loginTextField.layer.borderColor = UIColor.lightGray.cgColor
-//
-//        }
         
         if passwordError && loginError {
             warningLabel.alpha = 1
@@ -194,24 +183,14 @@ class LogInViewController: UIViewController {
         
         if !loginError && !passwordError {
             if loginTextField.text == LoginUser.login && passwordTextField.text == LoginUser.password{
-            navigationController?.pushViewController(profileVC, animated: true)
+                passwordTextField.layer.borderColor = UIColor.lightGray.cgColor
+                loginTextField.layer.borderColor = UIColor.lightGray.cgColor
+                navigationController?.pushViewController(profileVC, animated: true)
             } else {
-                alertAction
+                present(alertAction, animated: true)
                 
             }
         }
-        
-//        if !passwordError {
-//            passwordTextField.layer.borderColor = UIColor.lightGray.cgColor
-//        }
-//        if !loginError {
-//            loginTextField.layer.borderColor = UIColor.lightGray.cgColor
-//        }
-//
-//        if !loginError && !passwordError {
-//            navigationController?.pushViewController(profileVC, animated: true)
-//        }
-        
     }
 
 
