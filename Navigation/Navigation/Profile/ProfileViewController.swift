@@ -75,10 +75,13 @@ extension ProfileViewController: UITableViewDataSource {
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as! PhotosTableViewCell
+            
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
             cell.setupCell(news[indexPath.row])
+            cell.delegate = self
+            
             
             return cell
         }
@@ -103,6 +106,8 @@ extension ProfileViewController: UITableViewDelegate {
         if section == 0 {
             let header = ProfileHeaderView()
             header.setupViews()
+            header.delegate = self
+
             return header
         } else {
             return nil
@@ -114,6 +119,25 @@ extension ProfileViewController: UITableViewDelegate {
             let photosVC = PhotosViewController()
             navigationController?.pushViewController(photosVC, animated: true)
         }
+        
+    }
+    
+}
+
+// MARK: - ProfileHeaderViewDelegate
+
+// Мы можем реализовать код тут или в самой кнопке
+extension ProfileViewController: ProfileHeaderViewDelegate {
+    func buttonPressed(alert: UIAlertController) {
+        present(alert, animated: true)
+    }
+    
+}
+
+// MARK: - PostTableCellDelegate
+
+extension ProfileViewController: PostTableCellDelegate {
+    func likesPressed() {
         
     }
     

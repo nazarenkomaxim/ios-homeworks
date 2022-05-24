@@ -5,10 +5,16 @@
 //  Created by Maksim Nazarenko on 08.05.2022.
 //
 
-import Foundation
 import UIKit
 
+// Протокол для делегата кнопки на VC
+protocol ProfileHeaderViewDelegate: AnyObject {
+    func buttonPressed(alert: UIAlertController)
+}
+
 class ProfileHeaderView: UIView {
+    
+    weak var delegate: ProfileHeaderViewDelegate?
     
     var transparentView: UIView = {
         let view = UIView()
@@ -79,7 +85,7 @@ class ProfileHeaderView: UIView {
         button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
         button.backgroundColor = .systemBlue
         button.titleLabel?.textColor = .white
-        button.setTitle("Show status", for: .normal)
+        button.setTitle("Установить статус", for: .normal)
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
@@ -90,11 +96,11 @@ class ProfileHeaderView: UIView {
     
     let alertLabelAction: UIAlertController = {
         let alert = UIAlertController()
-        let okAlert = UIAlertAction(title: "Установить пустое", style: .default)
-        let cancelAlert = UIAlertAction(title: "Отмена", style: .cancel)
+        let okAlert = UIAlertAction(title: "Ок", style: .default)
+//        let cancelAlert = UIAlertAction(title: "Отмена", style: .cancel)
         alert.title = "Важное сообщение"
-        alert.message = "Поле статуса пустое, установить пустое?"
-        alert.addAction(cancelAlert)
+        alert.message = "Поле статуса пустое, установите статус"
+//        alert.addAction(cancelAlert)
         alert.addAction(okAlert)
         return alert
     }()
@@ -121,19 +127,13 @@ class ProfileHeaderView: UIView {
     }
     
     @objc private func tapAction() {
-        
-        let label = userStatusLabel.text ?? ""
+        let label = userTextField.text ?? ""
         
         if label.isEmpty {
-            
-//            present(alertLabelAction, animate: true)
+            delegate?.buttonPressed(alert: alertLabelAction)
+        } else {
+            userStatusLabel.text = label
         }
-        
-        if userStatusLabel.text == "" {
-            
-        }
-        
-        userStatusLabel.text = userTextField.text
     }
     
     private func setupGesture() {

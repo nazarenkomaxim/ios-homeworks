@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol PostTableCellDelegate: AnyObject {
+    func likesPressed()
+}
+
 class PostTableViewCell: UITableViewCell {
+    
+    weak var delegate: ProfileHeaderViewDelegate?
     
     private let whiteView: UIView = {
         let view = UIView()
@@ -49,7 +55,7 @@ class PostTableViewCell: UITableViewCell {
         let label = UILabel()
         label.toAutoLayout()
         label.font = UIFont.systemFont(ofSize: 16)
-        label.text = "Нравится: "
+        label.text = "❤️ "
         label.textColor = .black
         
         return label
@@ -67,6 +73,7 @@ class PostTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layout()
+        setupGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -78,10 +85,23 @@ class PostTableViewCell: UITableViewCell {
         newsImageView.image = post.image
         headingLabel.text = post.heading
         descriptionLabel.text = post.description
-        likesLabel.text = likesLabel.text! + String(post.likes)
-        viewsLabel.text = viewsLabel.text! + String(post.views)
+        likesLabel.text = "❤️ " + String(post.likes)
+        viewsLabel.text = "Просмотры " + String(post.views)
+
+    }
+    
+    private func setupGesture() {
+        let likesLabelGesture = UITapGestureRecognizer(target: self, action: #selector(putAlike))
+        likesLabel.addGestureRecognizer(likesLabelGesture)
+        likesLabel.isUserInteractionEnabled = true
+    }
+    
+    @objc private func putAlike() {
+        
+        print("Проверка нажатия на сердечко")
         
     }
+    
     
     private func layout() {
         // В UITableViewCell вместо view указываем contentView

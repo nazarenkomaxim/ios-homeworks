@@ -203,6 +203,7 @@ class LogInViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
         setupView()
+        
 //        textFieldCheck(loginTextField)
 //        passwordTextField.smartInsertDeleteType = UITextSmartInsertDeleteType.no
 //        passwordTextField.delegate = self
