@@ -88,6 +88,18 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
+    let alertLabelAction: UIAlertController = {
+        let alert = UIAlertController()
+        let okAlert = UIAlertAction(title: "Установить пустое", style: .default)
+        let cancelAlert = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.title = "Важное сообщение"
+        alert.message = "Поле статуса пустое, установить пустое?"
+        alert.addAction(cancelAlert)
+        alert.addAction(okAlert)
+        return alert
+    }()
+
+    
     private var centerXProfileView = NSLayoutConstraint()
     private var centerYProfileView = NSLayoutConstraint()
     private var widthProfileView = NSLayoutConstraint()
@@ -109,6 +121,18 @@ class ProfileHeaderView: UIView {
     }
     
     @objc private func tapAction() {
+        
+        let label = userStatusLabel.text ?? ""
+        
+        if label.isEmpty {
+            
+//            present(alertLabelAction, animate: true)
+        }
+        
+        if userStatusLabel.text == "" {
+            
+        }
+        
         userStatusLabel.text = userTextField.text
     }
     
