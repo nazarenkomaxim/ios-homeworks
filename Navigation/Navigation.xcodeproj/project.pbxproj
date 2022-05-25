@@ -73,8 +73,8 @@
 				EEA0D722283E7C24006D2710 /* NewsDetailView.swift */,
 				EEA4651A28245E040023DE0A /* ProfileViewController.swift */,
 				EE64E50B28284F2000C5D960 /* ProfileTableHederView.swift */,
-				EEB0A50A282EB803006D64B9 /* LogInViewController.swift */,
 				EEB0A50E28311538006D64B9 /* NewsFeedStruct.swift */,
+				EEB0A50A282EB803006D64B9 /* LogInViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";

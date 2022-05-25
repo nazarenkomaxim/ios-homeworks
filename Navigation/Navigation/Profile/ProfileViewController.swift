@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController {
     }()
     
     // Создаем константу, которая отвечает за новости и возвращает массив новостей
-    private let news = Post.makeNews()
+    private var news = Post.makeNews()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,21 +139,56 @@ extension ProfileViewController: ProfileHeaderViewDelegate {
 extension ProfileViewController: PostTableCellDelegate {
     func viewsPressed(cell: PostTableViewCell) {
         print("TAP VIEW")
-        let detailedPostView = 
-        self.view.addSubview(detailedPostView)
-        detailedPostView.translatesAutoresizingMaskIntoConstraints = false
-
-        let post = self.dataSource[indexPath.row]
-        let viewModel = PostView.ViewModel(
-            author: post.author, description: post.description, image: post.image, likes: post.likes, views: post.views)
-        detailedPostView.setup(with: viewModel)
-
+        
+        guard let index = self.tableView.indexPath(for: cell)?.row else { return }
+        let indexPath = IndexPath(row: index, section: 1)
+        news[indexPath.row].views += 1
+        
+        let newDetailView = NewsDetailView()
+        view.addSubviews(newDetailView)
+        newDetailView.toAutoLayout()
+        
+        let news = news[indexPath.row]
+        let viewNews = Post(heading: news.heading, description: news.description, image: news.image, likes: news.likes, views: news.views)
+        newDetailView.setupCell(viewNews)
+        
         NSLayoutConstraint.activate([
-            detailedPostView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            detailedPostView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            detailedPostView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            detailedPostView.topAnchor.constraint(equalTo: view.topAnchor)
+            newDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            newDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            newDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            newDetailView.topAnchor.constraint(equalTo: view.topAnchor)
         ])
+        
+        tableView.reloadRows(at: [indexPath], with: .none)
+        
+        
+//
+//        let newDetailView = NewsDetailView()
+//        newDetailView.toAutoLayout()
+//
+//        let post = news[indexPath.row]
+        
+        
+//
+//        NSLayoutConstraint.activate([
+//            newDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            newDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            newDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+//            newDetailView.topAnchor.constraint(equalTo: view.topAnchor)
+//        ])
+//
+        
+//        let post = self.dataSource[indexPath.row]
+        
+        
+//        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+//        cell.setupCell(news[indexPath.row])
+//        cell.delegateTableCell = self
+        
+        
+
+        
+
 
 
         
@@ -161,22 +196,15 @@ extension ProfileViewController: PostTableCellDelegate {
     
     
     func likesPressed(cell: PostTableViewCell) {
-//        guard let index = self.tableView.indexPath(for: cell)?.row else { return }
-//        let indexPatch = IndexPath(row: index, section: 1)
         
+        guard let index = tableView.indexPath(for: cell)?.row else { return }
+        let indexPath = IndexPath(row: index, section: 1)
+        news[indexPath.row].likes += 1
+        tableView.reloadRows(at: [indexPath], with: .none)
         
-        print("TAP")
+        print("Tap Likes")
         
     }
-    //    func likesPressed(post: inout Post) {
-    //        print("проверка")
-    //        post.likes += 1
-    
-    
-    //        post.likes += 1
-    //        guard let index = self.tableView.dataSource.
-    //        let indexPatch = IndexPath(row: index, section: 1)
-    //        self.tableView.dataSource[indexPath.row
     
 }
 

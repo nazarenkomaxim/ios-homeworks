@@ -89,6 +89,7 @@ class PostTableViewCell: UITableViewCell {
         descriptionLabel.text = post.description
         likesLabel.text = "❤️ " + String(post.likes)
         viewsLabel.text = "Просмотры " + String(post.views)
+                                                        
 
     }
     
@@ -111,8 +112,6 @@ class PostTableViewCell: UITableViewCell {
     @objc private func putAlike() {
         print("Проверка нажатия на сердечко")
         delegateTableCell?.likesPressed(cell: self)
-        
-        
         
     }
     
