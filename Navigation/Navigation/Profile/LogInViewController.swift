@@ -26,20 +26,7 @@ class LogInViewController: UIViewController {
         alert.addAction(okAlert)
         return alert
     }()
-    
-//    let alertAction = UIAlertController(title: "Важное сообщение", message: "Логин или пароль введены не правильно", preferredStyle: .alert)
-//    let okAlertAction = UIAlertAction(title: "Выйти", style: .default) { _ in
-//        self.navigationController?.popViewController(animated: true)
-//        print("Выходим")
-//    }
-//    let cancelAlertAction = UIAlertAction(title: "Отмена", style: .destructive) {_ in
-//        print("Отмена, не выходим")
-//    }
-
-//    alertAction.addAction(cancelAlertAction)
-//    alertAction.addAction(okAlertAction)
-//    present(alertAction, animated: true)
-    
+        
     private lazy var warningLabel: UILabel = {
         let label = UILabel()
         label.toAutoLayout()
@@ -93,7 +80,7 @@ class LogInViewController: UIViewController {
         text.textColor = .black
         text.textContentType = .emailAddress
         text.autocapitalizationType = .none
-        // Делегат нужен для подъема экрана во время появления клавиаутыры
+        // Делегат нужен для подъема экрана во время появления клавиатуры
 //        text.delegate = self
         return text
     }()
@@ -117,7 +104,7 @@ class LogInViewController: UIViewController {
         text.isSecureTextEntry = true
         text.autocapitalizationType = .none
         text.textContentType = .password
-        // Делегат нужен для подъема экрана во время появления клавиаутыры
+        // Делегат нужен для подъема экрана во время появления клавиатуры
 //        text.delegate = self
         return text
     }()
@@ -204,21 +191,8 @@ class LogInViewController: UIViewController {
         view.backgroundColor = .white
         setupView()
         
-//        textFieldCheck(loginTextField)
-//        passwordTextField.smartInsertDeleteType = UITextSmartInsertDeleteType.no
-//        passwordTextField.delegate = self
-//        isPasswordCorrect(passwordTextField)
-        
-        
     }
-    
-        /*
-         
-         Реализовать проверку на пустые поля логина и пароля. Если одно из полей пустое, то при нажатии на кнопку к этому полю должно применяться действие. Например: изменение цвета фона, рамки или подергивание.
-         Реализовать проверку на количество введенных символов пароля. Если меньше определенного количество, то под полем с паролеме должен появиться UILabel с предупреждением.
-         Установить стандартный логин и пароль. В случае ввода некорректных данных выбрасывать UIAlertController с предупреждением.
 
-         */
     
     func isPasswordCorrect(_ sender: UITextField) {
         if let text = sender.text {
@@ -231,28 +205,7 @@ class LogInViewController: UIViewController {
             }
         }
     }
-
-    
-//    func checkMaxLength(textField: UITextField!) {
-//        let minLength = 7
-//        if (countElements(textField.text!) > minLength) {
-//            textField.deleteBackward()
-//        }
-//    }
-    
-//    func isPasswordCorrect(_ sender: UITextField) -> Bool {
-//            // code for check length, number exist, uppercase and lowercase chars
-//        let passwordCount = sender.text?.count
-//        if passwordCount < 7 {
-//            print("Пароль должен содержать минимум 8 символов")
-//        } else {
-//            print("Проверка")
-//        }
-//
-//        value.text?.count >
-//
-//        }
-    
+        
     private func textFieldCheck(_ sender: UITextField) {
         
         if let text = sender.text {
@@ -317,10 +270,6 @@ class LogInViewController: UIViewController {
             // warningLabel
             warningLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8),
             warningLabel.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor),
-//            warningLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-//            warningLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-//            warningLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-
             
             // LogInVeiw
             loginView.topAnchor.constraint(equalTo: scrollView.topAnchor),

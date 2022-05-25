@@ -80,7 +80,7 @@ extension ProfileViewController: UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
             cell.setupCell(news[indexPath.row])
-            cell.delegate = self
+            cell.delegateTableCell = self            
             
             
             return cell
@@ -137,8 +137,46 @@ extension ProfileViewController: ProfileHeaderViewDelegate {
 // MARK: - PostTableCellDelegate
 
 extension ProfileViewController: PostTableCellDelegate {
-    func likesPressed() {
+    func viewsPressed(cell: PostTableViewCell) {
+        print("TAP VIEW")
+        let detailedPostView = 
+        self.view.addSubview(detailedPostView)
+        detailedPostView.translatesAutoresizingMaskIntoConstraints = false
+
+        let post = self.dataSource[indexPath.row]
+        let viewModel = PostView.ViewModel(
+            author: post.author, description: post.description, image: post.image, likes: post.likes, views: post.views)
+        detailedPostView.setup(with: viewModel)
+
+        NSLayoutConstraint.activate([
+            detailedPostView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            detailedPostView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            detailedPostView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            detailedPostView.topAnchor.constraint(equalTo: view.topAnchor)
+        ])
+
+
         
     }
     
+    
+    func likesPressed(cell: PostTableViewCell) {
+//        guard let index = self.tableView.indexPath(for: cell)?.row else { return }
+//        let indexPatch = IndexPath(row: index, section: 1)
+        
+        
+        print("TAP")
+        
+    }
+    //    func likesPressed(post: inout Post) {
+    //        print("проверка")
+    //        post.likes += 1
+    
+    
+    //        post.likes += 1
+    //        guard let index = self.tableView.dataSource.
+    //        let indexPatch = IndexPath(row: index, section: 1)
+    //        self.tableView.dataSource[indexPath.row
+    
 }
+

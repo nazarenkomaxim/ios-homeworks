@@ -1,22 +1,14 @@
 //
-//  PostTableViewCell.swift
+//  NewsDetailView.swift
 //  Navigation
 //
-//  Created by Maksim Nazarenko on 15.05.2022.
+//  Created by Maksim Nazarenko on 25.05.2022.
 //
 
 import UIKit
 
-protocol PostTableCellDelegate: AnyObject {
-//    func likesPressed(post: inout Post)
-    func likesPressed(cell: PostTableViewCell)
-    func viewsPressed(cell: PostTableViewCell)
-}
+class NewsDetailView: UIView {
 
-class PostTableViewCell: UITableViewCell {
-    
-    weak var delegateTableCell: PostTableCellDelegate?
-    
     private let whiteView: UIView = {
         let view = UIView()
         view.toAutoLayout()
@@ -157,7 +149,5 @@ class PostTableViewCell: UITableViewCell {
             viewsLabel.bottomAnchor.constraint(equalTo: whiteView.bottomAnchor, constant: -8),
             
         ])
-        
-    }
-    
+
 }

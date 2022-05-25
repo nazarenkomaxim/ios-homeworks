@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EE64E4E22825B2F200C5D960 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE64E4E12825B2F100C5D960 /* InfoViewController.swift */; };
 		EE64E50C28284F2000C5D960 /* ProfileTableHederView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE64E50B28284F2000C5D960 /* ProfileTableHederView.swift */; };
+		EEA0D723283E7C24006D2710 /* NewsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA0D722283E7C24006D2710 /* NewsDetailView.swift */; };
 		EEA46503282456570023DE0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA46502282456570023DE0A /* AppDelegate.swift */; };
 		EEA46505282456570023DE0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA46504282456570023DE0A /* SceneDelegate.swift */; };
 		EEA4650C282456590023DE0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEA4650B282456590023DE0A /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		EE64E4E12825B2F100C5D960 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		EE64E50B28284F2000C5D960 /* ProfileTableHederView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHederView.swift; sourceTree = "<group>"; };
+		EEA0D722283E7C24006D2710 /* NewsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailView.swift; sourceTree = "<group>"; };
 		EEA464FF282456570023DE0A /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEA46502282456570023DE0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EEA46504282456570023DE0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				EEE226E52837AEA000A5AF9C /* PhotosViewController.swift */,
 				EEE226E72837B94A00A5AF9C /* PhotosCollectionViewCell.swift */,
 				EEB0A5102831365E006D64B9 /* PostTableViewCell.swift */,
+				EEA0D722283E7C24006D2710 /* NewsDetailView.swift */,
 				EEA4651A28245E040023DE0A /* ProfileViewController.swift */,
 				EE64E50B28284F2000C5D960 /* ProfileTableHederView.swift */,
 				EEB0A50A282EB803006D64B9 /* LogInViewController.swift */,
@@ -199,6 +202,7 @@
 				EEA4651928245DF50023DE0A /* FeedViewController.swift in Sources */,
 				EEB0A50B282EB803006D64B9 /* LogInViewController.swift in Sources */,
 				EEE226E62837AEA000A5AF9C /* PhotosViewController.swift in Sources */,
+				EEA0D723283E7C24006D2710 /* NewsDetailView.swift in Sources */,
 				EEB0A5152833AFCC006D64B9 /* PhotosTableViewCell.swift in Sources */,
 				EEA4651728245D1A0023DE0A /* NavigationTabBarController.swift in Sources */,
 				EEB0A5172833CCAC006D64B9 /* Черновик PhotosViewController.swift in Sources */,
