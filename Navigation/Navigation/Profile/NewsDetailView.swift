@@ -27,16 +27,15 @@ class NewsDetailView: UIView {
         button.addTarget(self, action: #selector(closeAction), for: .touchUpInside)
         return button
     }()
-
+    
     private let newsImageView: UIImageView = {
         let view = UIImageView()
         view.toAutoLayout()
         view.contentMode = .scaleAspectFit
         view.clipsToBounds = true
-//        view.backgroundColor = .black
         return view
     }()
-
+    
     private let headingLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -46,7 +45,7 @@ class NewsDetailView: UIView {
         label.sizeToFit()
         return label
     }()
-
+    
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -55,11 +54,10 @@ class NewsDetailView: UIView {
         label.textColor = .black
         return label
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         layout()
-
         
     }
     
@@ -71,18 +69,16 @@ class NewsDetailView: UIView {
         removeFromSuperview()
     }
     
-
     // Метод для настройки ячеек
     func setupCell(_ post: Post) {
         newsImageView.image = post.image
         headingLabel.text = post.heading
         descriptionLabel.text = post.description
     }
-
-
+    
     private func layout() {
         [transparentView, headingLabel, newsImageView, descriptionLabel, closeButton, ].forEach { self.addSubview($0) }
-
+        
         NSLayoutConstraint.activate([
             // Фон
             transparentView.topAnchor.constraint(equalTo: self.topAnchor),
@@ -95,30 +91,28 @@ class NewsDetailView: UIView {
             closeButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
             closeButton.widthAnchor.constraint(equalToConstant: 20),
             closeButton.heightAnchor.constraint(equalToConstant: 20),
-
-
+            
             // Заголовок новости
             headingLabel.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 4),
             headingLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
             headingLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
-//            headingLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -8),
+            //            headingLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -8),
             
             // Описание новости
             descriptionLabel.topAnchor.constraint(equalTo: headingLabel.bottomAnchor, constant: 4),
             descriptionLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
             descriptionLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
-//            descriptionLabel.bottomAnchor.constraint(equalTo: newsImageView.topAnchor, constant: -4),
-
-
+            //            descriptionLabel.bottomAnchor.constraint(equalTo: newsImageView.topAnchor, constant: -4),
+            
             // Картинка
             newsImageView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 4),
             newsImageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor,constant: 4),
             newsImageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -4),
-//            newsImageView.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -8),
+            //            newsImageView.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -8),
             newsImageView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
             newsImageView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -4)
             
         ])
-
-}
+        
+    }
 }

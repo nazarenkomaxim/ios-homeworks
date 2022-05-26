@@ -35,8 +35,6 @@ class PhotosViewController: UIViewController {
         button.addTarget(self, action: #selector(closeAction), for: .touchUpInside)
         return button
     }()
-
-    
     
     private lazy var photosCollection: UICollectionView = {
         // Вначале создаем layout
@@ -80,9 +78,9 @@ class PhotosViewController: UIViewController {
     }
     
     @objc private func closeAction() {
-    
+        
     }
-
+    
 }
 
 // MARK: - UICollectionViewDataSource
@@ -153,12 +151,12 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
         view.addSubview(photoView)
         
         NSLayoutConstraint.activate([
-        
+            
             photoView.topAnchor.constraint(equalTo: view.topAnchor),
             photoView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             photoView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             photoView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        
+            
         ])
         
         navigationController?.navigationBar.isHidden = true
@@ -170,23 +168,18 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
             UIView.animate(withDuration: 0.2) {
                 photoView.backgroundColor = .black.withAlphaComponent(0.9)
             }
-
         }
-
-
     }
     
 }
 
-
-
-// MARK: -
+// MARK: - PhotoViewDelegate
 
 extension PhotosViewController: PhotoViewDelegate {
     func closePhoto(view: PhotoView) {
         view.removeFromSuperview()
         navigationController?.navigationBar.isHidden = false
         tabBarController?.tabBar.isHidden = false
-
+        
     }
 }

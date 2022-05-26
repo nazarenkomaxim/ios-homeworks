@@ -97,14 +97,13 @@ class ProfileHeaderView: UIView {
     let alertLabelAction: UIAlertController = {
         let alert = UIAlertController()
         let okAlert = UIAlertAction(title: "Ок", style: .default)
-//        let cancelAlert = UIAlertAction(title: "Отмена", style: .cancel)
+        //        let cancelAlert = UIAlertAction(title: "Отмена", style: .cancel)
         alert.title = "Важное сообщение"
         alert.message = "Поле статуса пустое, установите статус"
-//        alert.addAction(cancelAlert)
+        //        alert.addAction(cancelAlert)
         alert.addAction(okAlert)
         return alert
     }()
-
     
     private var centerXProfileView = NSLayoutConstraint()
     private var centerYProfileView = NSLayoutConstraint()
@@ -223,7 +222,6 @@ class ProfileHeaderView: UIView {
             transparentView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             transparentView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             
-            
             // close button
             closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             closeButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -40),
@@ -253,8 +251,3 @@ class ProfileHeaderView: UIView {
     }
     
 }
-
-
-
-
-

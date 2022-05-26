@@ -5,7 +5,6 @@
 //  Created by Maksim Nazarenko on 13.05.2022.
 //
 
-import Foundation
 import UIKit
 
 class LogInViewController: UIViewController {
@@ -26,7 +25,7 @@ class LogInViewController: UIViewController {
         alert.addAction(okAlert)
         return alert
     }()
-        
+    
     private lazy var warningLabel: UILabel = {
         let label = UILabel()
         label.toAutoLayout()
@@ -45,7 +44,7 @@ class LogInViewController: UIViewController {
         scrollView.toAutoLayout()
         return scrollView
     }()
-
+    
     private let loginView: UIView = {
         let view = UIView()
         view.toAutoLayout()
@@ -61,7 +60,7 @@ class LogInViewController: UIViewController {
         view.layer.masksToBounds = true
         return view
     }()
-
+    
     lazy var loginTextField: UITextField = {
         let text = UITextField()
         text.toAutoLayout()
@@ -81,10 +80,10 @@ class LogInViewController: UIViewController {
         text.textContentType = .emailAddress
         text.autocapitalizationType = .none
         // Делегат нужен для подъема экрана во время появления клавиатуры
-//        text.delegate = self
+        //        text.delegate = self
         return text
     }()
-
+    
     lazy var passwordTextField: UITextField = {
         let text = UITextField()
         text.toAutoLayout()
@@ -105,10 +104,10 @@ class LogInViewController: UIViewController {
         text.autocapitalizationType = .none
         text.textContentType = .password
         // Делегат нужен для подъема экрана во время появления клавиатуры
-//        text.delegate = self
+        //        text.delegate = self
         return text
     }()
-
+    
     lazy var loginBlueButton: UIButton = {
         let button = UIButton()
         button.toAutoLayout()
@@ -125,14 +124,10 @@ class LogInViewController: UIViewController {
         button.setBackgroundImage(UIImage(named: "blue_pixel-2"), for: UIControl.State.normal)
         return button
     }()
-
+    
     @objc func moveToProfile() {
         
         let profileVC = ProfileViewController()
-        
-        // Не забыть закомментить
-//        navigationController?.pushViewController(profileVC, animated: true)
-
         
         var loginError = false
         var passwordError = false
@@ -183,42 +178,12 @@ class LogInViewController: UIViewController {
             }
         }
     }
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
         setupView()
-        
-    }
-
-    
-    func isPasswordCorrect(_ sender: UITextField) {
-        if let text = sender.text {
-            let textLength = text.count
-            if  textLength < 7 {
-                //Do something
-                passwordTextField.layer.borderColor = UIColor.systemRed.cgColor
-                
-                print("\(text), length: \(textLength)")
-            }
-        }
-    }
-        
-    private func textFieldCheck(_ sender: UITextField) {
-        
-        if let text = sender.text {
-            let textLength = text.count
-            switch textLength {
-            case 0:
-                print("Поле не должно быть пустым")
-                sender.layer.borderColor = UIColor.systemRed.cgColor
-                
-            default:
-                print("")
-            }
-        }
         
     }
     
@@ -266,7 +231,7 @@ class LogInViewController: UIViewController {
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-        
+            
             // warningLabel
             warningLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8),
             warningLabel.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor),
@@ -277,7 +242,7 @@ class LogInViewController: UIViewController {
             loginView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             loginView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             loginView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-        
+            
             // logoView
             logoView.topAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.topAnchor, constant: 120),
             logoView.centerXAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.centerXAnchor),
@@ -295,7 +260,7 @@ class LogInViewController: UIViewController {
             passwordTextField.leadingAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             passwordTextField.heightAnchor.constraint(equalToConstant: 50),
             passwordTextField.trailingAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-
+            
             // loginBlueButton
             loginBlueButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 28),
             loginBlueButton.leadingAnchor.constraint(equalTo: loginView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
@@ -308,7 +273,6 @@ class LogInViewController: UIViewController {
     }
     
 }
-
 
 // MARK: - UITextFieldDelegate
 
@@ -325,15 +289,9 @@ extension LogInViewController: UITextFieldDelegate {
         return count <= 10
     }
     
-    
     // Метод убирает клавиатуру, когда нажимаем на клавишу return на клавиатуре
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true
     }
 }
-
-
-
-
-

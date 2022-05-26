@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PostTableCellDelegate: AnyObject {
-//    func likesPressed(post: inout Post)
+    //    func likesPressed(post: inout Post)
     func likesPressed(cell: PostTableViewCell)
     func viewsPressed(cell: PostTableViewCell)
 }
@@ -89,8 +89,7 @@ class PostTableViewCell: UITableViewCell {
         descriptionLabel.text = post.description
         likesLabel.text = "❤️ " + String(post.likes)
         viewsLabel.text = "Просмотры " + String(post.views)
-                                                        
-
+        
     }
     
     private func setupGesture() {
@@ -114,7 +113,6 @@ class PostTableViewCell: UITableViewCell {
         delegateTableCell?.likesPressed(cell: self)
         
     }
-    
     
     private func layout() {
         // В UITableViewCell вместо view указываем contentView

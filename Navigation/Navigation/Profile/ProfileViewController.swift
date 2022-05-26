@@ -75,14 +75,11 @@ extension ProfileViewController: UITableViewDataSource {
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as! PhotosTableViewCell
-            
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
             cell.setupCell(news[indexPath.row])
-            cell.delegateTableCell = self            
-            
-            
+            cell.delegateTableCell = self
             return cell
         }
     }
@@ -107,7 +104,7 @@ extension ProfileViewController: UITableViewDelegate {
             let header = ProfileHeaderView()
             header.setupViews()
             header.delegate = self
-
+            
             return header
         } else {
             return nil
@@ -138,7 +135,7 @@ extension ProfileViewController: ProfileHeaderViewDelegate {
 
 extension ProfileViewController: PostTableCellDelegate {
     func viewsPressed(cell: PostTableViewCell) {
-        print("TAP VIEW")
+        //        print("Tap View")
         
         guard let index = self.tableView.indexPath(for: cell)?.row else { return }
         let indexPath = IndexPath(row: index, section: 1)
@@ -161,39 +158,7 @@ extension ProfileViewController: PostTableCellDelegate {
         
         tableView.reloadRows(at: [indexPath], with: .none)
         
-        
-//
-//        let newDetailView = NewsDetailView()
-//        newDetailView.toAutoLayout()
-//
-//        let post = news[indexPath.row]
-        
-        
-//
-//        NSLayoutConstraint.activate([
-//            newDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            newDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            newDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-//            newDetailView.topAnchor.constraint(equalTo: view.topAnchor)
-//        ])
-//
-        
-//        let post = self.dataSource[indexPath.row]
-        
-        
-//        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
-//        cell.setupCell(news[indexPath.row])
-//        cell.delegateTableCell = self
-        
-        
-
-        
-
-
-
-        
     }
-    
     
     func likesPressed(cell: PostTableViewCell) {
         
@@ -201,8 +166,7 @@ extension ProfileViewController: PostTableCellDelegate {
         let indexPath = IndexPath(row: index, section: 1)
         news[indexPath.row].likes += 1
         tableView.reloadRows(at: [indexPath], with: .none)
-        
-        print("Tap Likes")
+        //        print("Tap Likes")
         
     }
     
