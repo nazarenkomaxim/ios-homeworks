@@ -23,7 +23,6 @@
 		EEB0A50F28311538006D64B9 /* NewsFeedStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A50E28311538006D64B9 /* NewsFeedStruct.swift */; };
 		EEB0A5112831365E006D64B9 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A5102831365E006D64B9 /* PostTableViewCell.swift */; };
 		EEB0A5152833AFCC006D64B9 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A5142833AFCB006D64B9 /* PhotosTableViewCell.swift */; };
-		EEB0A5172833CCAC006D64B9 /* Черновик PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A5162833CCAB006D64B9 /* Черновик PhotosViewController.swift */; };
 		EEE226E62837AEA000A5AF9C /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE226E52837AEA000A5AF9C /* PhotosViewController.swift */; };
 		EEE226E82837B94A00A5AF9C /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE226E72837B94A00A5AF9C /* PhotosCollectionViewCell.swift */; };
 		EEE98F3F283F7F0800A31A63 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE98F3E283F7F0800A31A63 /* PhotoView.swift */; };
@@ -48,7 +47,6 @@
 		EEB0A50E28311538006D64B9 /* NewsFeedStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedStruct.swift; sourceTree = "<group>"; };
 		EEB0A5102831365E006D64B9 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		EEB0A5142833AFCB006D64B9 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
-		EEB0A5162833CCAB006D64B9 /* Черновик PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Черновик PhotosViewController.swift"; sourceTree = "<group>"; };
 		EEE226E52837AEA000A5AF9C /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		EEE226E72837B94A00A5AF9C /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		EEE98F3E283F7F0800A31A63 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 				EEA4650B282456590023DE0A /* Assets.xcassets */,
 				EEA4650D282456590023DE0A /* LaunchScreen.storyboard */,
 				EEA46510282456590023DE0A /* Info.plist */,
-				EEB0A5162833CCAB006D64B9 /* Черновик PhotosViewController.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -209,7 +206,6 @@
 				EEA0D723283E7C24006D2710 /* NewsDetailView.swift in Sources */,
 				EEB0A5152833AFCC006D64B9 /* PhotosTableViewCell.swift in Sources */,
 				EEA4651728245D1A0023DE0A /* NavigationTabBarController.swift in Sources */,
-				EEB0A5172833CCAC006D64B9 /* Черновик PhotosViewController.swift in Sources */,
 				EEE226E82837B94A00A5AF9C /* PhotosCollectionViewCell.swift in Sources */,
 				EE64E4E22825B2F200C5D960 /* InfoViewController.swift in Sources */,
 				EEA46505282456570023DE0A /* SceneDelegate.swift in Sources */,
