@@ -131,7 +131,7 @@ class LogInViewController: UIViewController {
         let profileVC = ProfileViewController()
         
         // Не забыть закомментить
-        navigationController?.pushViewController(profileVC, animated: true)
+//        navigationController?.pushViewController(profileVC, animated: true)
 
         
         var loginError = false

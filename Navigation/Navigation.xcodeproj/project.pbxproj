@@ -26,6 +26,7 @@
 		EEB0A5172833CCAC006D64B9 /* Черновик PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A5162833CCAB006D64B9 /* Черновик PhotosViewController.swift */; };
 		EEE226E62837AEA000A5AF9C /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE226E52837AEA000A5AF9C /* PhotosViewController.swift */; };
 		EEE226E82837B94A00A5AF9C /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE226E72837B94A00A5AF9C /* PhotosCollectionViewCell.swift */; };
+		EEE98F3F283F7F0800A31A63 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE98F3E283F7F0800A31A63 /* PhotoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		EEB0A5162833CCAB006D64B9 /* Черновик PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Черновик PhotosViewController.swift"; sourceTree = "<group>"; };
 		EEE226E52837AEA000A5AF9C /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		EEE226E72837B94A00A5AF9C /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		EEE98F3E283F7F0800A31A63 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			children = (
 				EEB0A5142833AFCB006D64B9 /* PhotosTableViewCell.swift */,
 				EEE226E52837AEA000A5AF9C /* PhotosViewController.swift */,
+				EEE98F3E283F7F0800A31A63 /* PhotoView.swift */,
 				EEE226E72837B94A00A5AF9C /* PhotosCollectionViewCell.swift */,
 				EEB0A5102831365E006D64B9 /* PostTableViewCell.swift */,
 				EEA0D722283E7C24006D2710 /* NewsDetailView.swift */,
@@ -195,6 +198,7 @@
 				EEB0A50F28311538006D64B9 /* NewsFeedStruct.swift in Sources */,
 				EEA4651B28245E040023DE0A /* ProfileViewController.swift in Sources */,
 				EEB0A5112831365E006D64B9 /* PostTableViewCell.swift in Sources */,
+				EEE98F3F283F7F0800A31A63 /* PhotoView.swift in Sources */,
 				EEA4651D28246AAF0023DE0A /* PostViewController.swift in Sources */,
 				EEA46503282456570023DE0A /* AppDelegate.swift in Sources */,
 				EEB0A4E1282BD73D006D64B9 /* ExtensionUIView.swift in Sources */,
