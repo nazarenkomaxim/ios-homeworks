@@ -15,6 +15,7 @@ struct Post {
     var views: Int
     
     static func makeNews() -> [Post] {
+        
         var news = [Post]()
         
         news.append(Post(heading: "46 лет назад, 1 апреля 1976 года Стив Джобс, Стив Возняк и Рональд Вэйн основали компанию Apple Computer!", description: "Давайте окунёмся в историю и вспомним значимые событий этой замечательной компании, о которых вы могли не знать. Продолжение в следующей публикации.", image: UIImage(named: "appleComputers")!, likes: 18, views: 173))
@@ -23,5 +24,7 @@ struct Post {
         news.append(Post(heading: "2001 год. Apple представила iPod.", description: "Серия портативных проигрывателей, которые изменили музыкальную индустрию и являлись одними из самых популярных устройств своего времени. Некоторые модели iPod имеют статус культовых, ими пользуются и в наше время.", image: UIImage(named: "iPod1st")!, likes: 13, views: 135))
         
         return news
+        
     }
+    
 }

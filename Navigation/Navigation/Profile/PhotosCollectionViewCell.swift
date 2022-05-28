@@ -40,7 +40,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     func setupView(with photo: UIImage) {
         photoImageView.image = photo
     }
-
+    
     private func layout() {
         contentView.addSubviews(photoImageView)
         
@@ -51,9 +51,8 @@ class PhotosCollectionViewCell: UICollectionViewCell {
             photoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             photoImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
             
-            ])
+        ])
         
     }
     
 }
-

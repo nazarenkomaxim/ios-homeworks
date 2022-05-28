@@ -17,6 +17,25 @@ class PhotosViewController: UIViewController {
         return array
     }
     
+    var transparentView: UIView = {
+        let view = UIView()
+        view.toAutoLayout()
+        view.alpha = 0
+        view.clipsToBounds = true
+        view.backgroundColor = .black
+        return view
+    }()
+    
+    lazy var closeButton: UIButton = {
+        let button = UIButton()
+        button.toAutoLayout()
+        let image = UIImage(systemName: "xmark")
+        button.setBackgroundImage(image, for: .normal)
+        button.alpha = 0
+        button.addTarget(self, action: #selector(closeAction), for: .touchUpInside)
+        return button
+    }()
+    
     private lazy var photosCollection: UICollectionView = {
         // Вначале создаем layout
         let layout = UICollectionViewFlowLayout()
@@ -57,6 +76,11 @@ class PhotosViewController: UIViewController {
             
         ])
     }
+    
+    @objc private func closeAction() {
+        
+    }
+    
 }
 
 // MARK: - UICollectionViewDataSource
@@ -118,5 +142,44 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         sideInset
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let photoView = PhotoView()
+        photoView.photoViewDelegate = self
+        photoView.photoImageView.image = arrayPhoto[indexPath.item]
+        view.addSubview(photoView)
+        
+        NSLayoutConstraint.activate([
+            
+            photoView.topAnchor.constraint(equalTo: view.topAnchor),
+            photoView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            photoView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            photoView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            
+        ])
+        
+        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
+        
+        UIView.animate(withDuration: 0.4) {
+            self.view.layoutIfNeeded()
+        } completion: { _ in
+            UIView.animate(withDuration: 0.2) {
+                photoView.backgroundColor = .black.withAlphaComponent(0.9)
+            }
+        }
+    }
+    
 }
 
+// MARK: - PhotoViewDelegate
+
+extension PhotosViewController: PhotoViewDelegate {
+    func closePhoto(view: PhotoView) {
+        view.removeFromSuperview()
+        navigationController?.navigationBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
+        
+    }
+}

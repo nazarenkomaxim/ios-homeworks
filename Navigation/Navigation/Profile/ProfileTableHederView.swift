@@ -5,10 +5,16 @@
 //  Created by Maksim Nazarenko on 08.05.2022.
 //
 
-import Foundation
 import UIKit
 
+// Протокол для делегата кнопки на VC
+protocol ProfileHeaderViewDelegate: AnyObject {
+    func buttonPressed(alert: UIAlertController)
+}
+
 class ProfileHeaderView: UIView {
+    
+    weak var delegate: ProfileHeaderViewDelegate?
     
     var transparentView: UIView = {
         let view = UIView()
@@ -26,8 +32,6 @@ class ProfileHeaderView: UIView {
         button.setBackgroundImage(image, for: .normal)
         button.alpha = 0
         button.addTarget(self, action: #selector(closeAction), for: .touchUpInside)
-        //        button.addTarget(self, action: #selector(closeAvatar), for: .touchUpInside)
-        
         return button
     }()
     
@@ -44,7 +48,6 @@ class ProfileHeaderView: UIView {
         // Обрезать фото по радиусу
         profilePhoto.layer.masksToBounds = true
         profilePhoto.isUserInteractionEnabled = true
-        
         return profilePhoto
     }()
     
@@ -82,7 +85,7 @@ class ProfileHeaderView: UIView {
         button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
         button.backgroundColor = .systemBlue
         button.titleLabel?.textColor = .white
-        button.setTitle("Show status", for: .normal)
+        button.setTitle("Установить статус", for: .normal)
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
@@ -90,10 +93,20 @@ class ProfileHeaderView: UIView {
         button.layer.cornerRadius = 4
         return button
     }()
-        
+    
+    let alertLabelAction: UIAlertController = {
+        let alert = UIAlertController()
+        let okAlert = UIAlertAction(title: "Ок", style: .default)
+        //        let cancelAlert = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.title = "Важное сообщение"
+        alert.message = "Поле статуса пустое, установите статус"
+        //        alert.addAction(cancelAlert)
+        alert.addAction(okAlert)
+        return alert
+    }()
+    
     private var centerXProfileView = NSLayoutConstraint()
     private var centerYProfileView = NSLayoutConstraint()
-    
     private var widthProfileView = NSLayoutConstraint()
     private var heightProfileView = NSLayoutConstraint()
     
@@ -113,16 +126,19 @@ class ProfileHeaderView: UIView {
     }
     
     @objc private func tapAction() {
-        userStatusLabel.text = userTextField.text
+        let label = userTextField.text ?? ""
+        
+        if label.isEmpty {
+            delegate?.buttonPressed(alert: alertLabelAction)
+        } else {
+            userStatusLabel.text = label
+        }
     }
-    
-    
     
     private func setupGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapPhotoAction))
         profilePhotoView.addGestureRecognizer(tapGesture)
     }
-    
     
     @objc private func tapPhotoAction() {
         
@@ -152,13 +168,13 @@ class ProfileHeaderView: UIView {
         } completion: { _ in
             UIView.animate(withDuration: 0.3) {
                 self.closeButton.alpha = 1.0
-                
             }
         }
         
     }
     
     @objc private func closeAction() {
+        
         UIView.animate(withDuration: 0.5, animations: {
             
             NSLayoutConstraint.deactivate([
@@ -182,14 +198,12 @@ class ProfileHeaderView: UIView {
             self.layoutIfNeeded()
             
         })
-        
     }
     
     func setupViews() {
         
         // Для того, чтобы не добавлять много элементов в addSubview, можно создать замыкание:
         [profileNameLabel, userStatusButton, userStatusLabel, userTextField,transparentView, profilePhotoView,  closeButton].forEach { self.addSubview($0) }
-        
         
         centerXProfileView = profilePhotoView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 90)
         centerYProfileView = profilePhotoView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 100)
@@ -207,7 +221,6 @@ class ProfileHeaderView: UIView {
             transparentView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             transparentView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             transparentView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            
             
             // close button
             closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -229,7 +242,7 @@ class ProfileHeaderView: UIView {
             userStatusLabel.leadingAnchor.constraint(equalTo: profilePhotoView.trailingAnchor, constant: 30),
             
             // Поле для статуса
-            userTextField.topAnchor.constraint(equalTo: userStatusLabel.bottomAnchor, constant: 20),
+            userTextField.topAnchor.constraint(equalTo: userStatusLabel.bottomAnchor, constant: 30),
             userTextField.leadingAnchor.constraint(equalTo: profilePhotoView.trailingAnchor, constant: 30),
             userTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             userStatusButton.heightAnchor.constraint(equalToConstant: 40)
@@ -238,8 +251,3 @@ class ProfileHeaderView: UIView {
     }
     
 }
-
-
-
-
-

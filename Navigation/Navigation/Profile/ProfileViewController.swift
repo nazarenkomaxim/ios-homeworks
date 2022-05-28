@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController {
     }()
     
     // Создаем константу, которая отвечает за новости и возвращает массив новостей
-    private let news = Post.makeNews()
+    private var news = Post.makeNews()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +79,7 @@ extension ProfileViewController: UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
             cell.setupCell(news[indexPath.row])
-            
+            cell.delegateTableCell = self
             return cell
         }
     }
@@ -103,6 +103,8 @@ extension ProfileViewController: UITableViewDelegate {
         if section == 0 {
             let header = ProfileHeaderView()
             header.setupViews()
+            header.delegate = self
+            
             return header
         } else {
             return nil
@@ -118,3 +120,55 @@ extension ProfileViewController: UITableViewDelegate {
     }
     
 }
+
+// MARK: - ProfileHeaderViewDelegate
+
+// Мы можем реализовать код тут или в самой кнопке
+extension ProfileViewController: ProfileHeaderViewDelegate {
+    func buttonPressed(alert: UIAlertController) {
+        present(alert, animated: true)
+    }
+    
+}
+
+// MARK: - PostTableCellDelegate
+
+extension ProfileViewController: PostTableCellDelegate {
+    func viewsPressed(cell: PostTableViewCell) {
+        //        print("Tap View")
+        
+        guard let index = self.tableView.indexPath(for: cell)?.row else { return }
+        let indexPath = IndexPath(row: index, section: 1)
+        news[indexPath.row].views += 1
+        
+        let newDetailView = NewsDetailView()
+        view.addSubviews(newDetailView)
+        newDetailView.toAutoLayout()
+        
+        let news = news[indexPath.row]
+        let viewNews = Post(heading: news.heading, description: news.description, image: news.image, likes: news.likes, views: news.views)
+        newDetailView.setupCell(viewNews)
+        
+        NSLayoutConstraint.activate([
+            newDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            newDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            newDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            newDetailView.topAnchor.constraint(equalTo: view.topAnchor)
+        ])
+        
+        tableView.reloadRows(at: [indexPath], with: .none)
+        
+    }
+    
+    func likesPressed(cell: PostTableViewCell) {
+        
+        guard let index = tableView.indexPath(for: cell)?.row else { return }
+        let indexPath = IndexPath(row: index, section: 1)
+        news[indexPath.row].likes += 1
+        tableView.reloadRows(at: [indexPath], with: .none)
+        //        print("Tap Likes")
+        
+    }
+    
+}
+
